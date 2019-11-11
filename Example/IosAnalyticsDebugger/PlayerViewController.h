@@ -8,6 +8,6 @@
 
 @import UIKit;
 
-@interface AVOViewController : UIViewController
+@interface PlayerViewController : UIViewController
 
 @end
