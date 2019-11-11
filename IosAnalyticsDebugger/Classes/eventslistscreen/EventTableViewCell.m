@@ -65,7 +65,7 @@
         [self layoutIfNeeded];
         [self setNeedsUpdateConstraints];
         
-        [self.expendCollapseImage setImage:[UIImage imageNamed:@"collapse_arrow"]];
+        [self.expendCollapseImage setImage:[UIImage imageNamed:@"collapse_arrow" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil]];
     }
 }
 
@@ -77,17 +77,18 @@
         [self layoutIfNeeded];
         [self setNeedsUpdateConstraints];
         
-        [self.expendCollapseImage setImage:[UIImage imageNamed:@"expend_arrow"]];
+        [self.expendCollapseImage setImage:[UIImage imageNamed:@"expend_arrow" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil]];
     }
 }
 
 - (void) showError:(BOOL) isError {
+    NSBundle *selfBundle = [NSBundle bundleForClass:self.class];
     if (isError) {
-        [self.eventName setTextColor:[UIColor colorNamed:@"error_color"]];
-        [self.statusIcon setImage:[UIImage imageNamed:@"red_warning"]];
+        [self.eventName setTextColor:[UIColor colorNamed:@"error_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
+        [self.statusIcon setImage:[UIImage imageNamed:@"red_warning" inBundle:selfBundle compatibleWithTraitCollection:nil]];
     } else {
         [self.eventName setTextColor:[UIColor blackColor]];
-        [self.statusIcon setImage:[UIImage imageNamed:@"tick"]];
+        [self.statusIcon setImage:[UIImage imageNamed:@"tick" inBundle:selfBundle compatibleWithTraitCollection:nil]];
     }
 }
 

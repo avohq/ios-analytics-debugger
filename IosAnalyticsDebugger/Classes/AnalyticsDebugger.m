@@ -158,6 +158,10 @@ CGFloat screenWidth;
     if (debuggerView != nil) {
         [debuggerView showEvent:event];
     }
+    
+    if (onNewEventCallback != nil) {
+        onNewEventCallback(event);
+    }
 }
 
 - (BOOL) isEnabled {
@@ -166,6 +170,10 @@ CGFloat screenWidth;
 
 + (NSMutableArray*) events {
     return analyticsDebuggerEvents;
+}
+
++(void) setOnNewEventCallback:(nullable OnNewEventCallback) callback {
+    onNewEventCallback = callback;
 }
 
 @end

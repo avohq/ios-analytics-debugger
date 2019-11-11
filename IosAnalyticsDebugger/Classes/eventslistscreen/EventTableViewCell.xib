@@ -11,10 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventTableViewCell" rowHeight="181" translatesAutoresizingMaskIntoConstraints="NO" id="KGk-i7-Jjw" customClass="EventTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="181"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="181"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventTableViewCell" rowHeight="76" translatesAutoresizingMaskIntoConstraints="NO" id="KGk-i7-Jjw" customClass="EventTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IgJ-4a-or0" userLabel="Main Row">
@@ -55,17 +55,17 @@
                             <constraint firstItem="jtT-if-67T" firstAttribute="top" secondItem="ezh-6a-k59" secondAttribute="top" constant="18" id="RKw-uJ-4vk"/>
                             <constraint firstItem="fnW-dx-Z0D" firstAttribute="top" secondItem="ezh-6a-k59" secondAttribute="top" constant="10" id="fOy-Wv-YIy"/>
                             <constraint firstItem="cK3-Ak-b3L" firstAttribute="top" secondItem="fnW-dx-Z0D" secondAttribute="bottom" id="mDm-Wc-RpI"/>
-                            <constraint firstAttribute="height" constant="52" id="oZc-B2-l5l"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="oZc-B2-l5l"/>
                             <constraint firstItem="fnW-dx-Z0D" firstAttribute="leading" secondItem="jtT-if-67T" secondAttribute="trailing" constant="16" id="vPt-yq-w9j"/>
                             <constraint firstItem="ezh-6a-k59" firstAttribute="trailing" secondItem="zer-Du-iDT" secondAttribute="trailing" constant="16" id="yXJ-DZ-lFH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ezh-6a-k59"/>
                     </view>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-j0-lAc" userLabel="Additional Rows">
-                        <rect key="frame" x="0.0" y="52" width="320" height="128"/>
+                        <rect key="frame" x="0.0" y="52" width="320" height="24"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="128" id="XhH-hN-j7w"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="XhH-hN-j7w"/>
                         </constraints>
                     </tableView>
                 </subviews>
@@ -89,7 +89,7 @@
                 <outlet property="statusIcon" destination="jtT-if-67T" id="zVY-9h-EoD"/>
                 <outlet property="timestamp" destination="fnW-dx-Z0D" id="CVu-y9-g7F"/>
             </connections>
-            <point key="canvasLocation" x="140.57971014492756" y="191.85267857142856"/>
+            <point key="canvasLocation" x="140.57971014492756" y="156.02678571428569"/>
         </tableViewCell>
     </objects>
     <resources>

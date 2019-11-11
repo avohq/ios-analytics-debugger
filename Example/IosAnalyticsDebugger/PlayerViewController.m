@@ -9,8 +9,8 @@
 #import "PlayerViewController.h"
 #import "MusicPlayerLogic.h"
 #import <AnalyticsDebugger.h>
+#import "AVOAppDelegate.h"
 
-static AnalyticsDebugger *debugger = nil;
 
 @interface PlayerViewController ()
 
@@ -39,10 +39,6 @@ static AnalyticsDebugger *debugger = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if (debugger == nil) {
-        debugger = [AnalyticsDebugger new];
-    }
     
     self.musicPlayerLogic = [MusicPlayerLogic new];
     [self.musicPlayerLogic loadCurrentTrack];
@@ -78,15 +74,15 @@ static AnalyticsDebugger *debugger = nil;
 }
 
 - (IBAction)showBubble:(id)sender {
-    [debugger showBubbleDebugger];
+    [[AVOAppDelegate debugger] showBubbleDebugger];
 }
 
 - (IBAction)showBar:(id)sender {
-    [debugger showBarDebugger];
+    [[AVOAppDelegate debugger] showBarDebugger];
 }
 
 - (IBAction)hideDebugger:(id)sender {
-    [debugger hideDebugger];
+    [[AVOAppDelegate debugger] hideDebugger];
 }
 - (IBAction)playPause:(id)sender {
     if ([[self.playPauseButton currentTitle] isEqual:@"PLAY"]) {
