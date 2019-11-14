@@ -1,6 +1,5 @@
 # IosAnalyticsDebugger
 
-[![CI Status](https://img.shields.io/travis/Alexey Verein/IosAnalyticsDebugger.svg?style=flat)](https://travis-ci.org/Alexey Verein/IosAnalyticsDebugger)
 [![Version](https://img.shields.io/cocoapods/v/IosAnalyticsDebugger.svg?style=flat)](https://cocoapods.org/pods/IosAnalyticsDebugger)
 [![License](https://img.shields.io/cocoapods/l/IosAnalyticsDebugger.svg?style=flat)](https://cocoapods.org/pods/IosAnalyticsDebugger)
 [![Platform](https://img.shields.io/cocoapods/p/IosAnalyticsDebugger.svg?style=flat)](https://cocoapods.org/pods/IosAnalyticsDebugger)
@@ -22,7 +21,7 @@ pod 'IosAnalyticsDebugger'
 
 ## Author
 
-Alexey Verein, tpom6oh@gmail.com
+Avo (https://www.avo.app), friends@avo.app
 
 ## License
 
