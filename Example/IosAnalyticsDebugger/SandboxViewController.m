@@ -13,8 +13,8 @@
 
 @interface AnalyticsDebugger(MyAdditions)
 -(void) publishEvent:(NSString *) eventName withTimestamp:(NSTimeInterval) timestamp
-            withId:(NSString *) eventId withMessages:(NSArray *) messages
-      withEventProps:(NSArray *) eventProps withUserProps:(NSArray *) userProps;
+            withId:(NSString *) eventId withMessages:(NSArray<DebuggerMessage *> *) messages
+      withEventProps:(NSArray<DebuggerProp *> *) eventProps withUserProps:(NSArray<DebuggerProp *> *) userProps;
 
 -(BOOL) isEnabled;
 @end
