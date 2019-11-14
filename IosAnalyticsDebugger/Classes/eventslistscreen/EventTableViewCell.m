@@ -2,8 +2,7 @@
 //  EventTableViewCell.m
 //  IosAnalyticsDebugger
 //
-//  Created by Alex Verein on 30/10/2019.
-//  Copyright © 2019 Alex Verein. All rights reserved.
+//  Copyright © 2019. All rights reserved.
 //
 
 #import "EventTableViewCell.h"

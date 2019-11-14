@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## IosAnalyticsDebugger
 
-Copyright (c) 2019 Alexey Verein <tpom6oh@gmail.com>
+Copyright (c) 2019 Avo (https://www.avo.app), friends@avo.app
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

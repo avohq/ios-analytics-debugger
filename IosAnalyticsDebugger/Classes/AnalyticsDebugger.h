@@ -2,8 +2,7 @@
 //  Debugger.h
 //  IosAnalyticsDebugger
 //
-//  Created by Alex Verein on 21/10/2019.
-//  Copyright © 2019 Alex Verein. All rights reserved.
+//  Copyright © 2019. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
