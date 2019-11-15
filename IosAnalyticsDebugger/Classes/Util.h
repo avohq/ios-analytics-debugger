@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *) timeString:(NSTimeInterval)timestamp;
 +(BOOL) eventHaveErrors:(DebuggerEventItem *)event;
 +(NSInteger) barBottomOffset;
++(CGFloat) statusBarHeight;
 
 @end
 

@@ -56,7 +56,7 @@ CGFloat screenWidth;
 - (void) drugBar:(UIPanGestureRecognizer*)sender {
     CGPoint translation = [sender translationInView:debuggerView];
     
-    CGFloat statusBarHeight = [self statusBarHeight:debuggerView];
+    CGFloat statusBarHeight = [Util statusBarHeight];
     NSInteger bottomOffset = [Util barBottomOffset];
     
     CGFloat newY = MIN(debuggerView.center.y + translation.y, screenHeight - bottomOffset);
@@ -88,7 +88,7 @@ CGFloat screenWidth;
 - (void) drugBubble:(UIPanGestureRecognizer*)sender {
     CGPoint translation = [sender translationInView:debuggerView];
     
-    CGFloat statusBarHeight = [self statusBarHeight:debuggerView];
+    CGFloat statusBarHeight = [Util statusBarHeight];
     NSInteger bottomOffset = [Util barBottomOffset];
     
     CGFloat newY = MIN(debuggerView.center.y + translation.y, screenHeight - bottomOffset);
@@ -112,16 +112,6 @@ CGFloat screenWidth;
         
         [rootViewController presentViewController:eventsListViewController animated:YES completion:nil];
     }
-}
-
-- (CGFloat) statusBarHeight:(UIView*)view {
-    CGSize statusBarSize;
-    if (@available(iOS 13.0, *)) {
-        statusBarSize = [[[[view window] windowScene] statusBarManager] statusBarFrame].size;
-    } else {
-        statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
-    }
-    return MIN(statusBarSize.width, statusBarSize.height);
 }
 
 - (void) hideDebugger {
