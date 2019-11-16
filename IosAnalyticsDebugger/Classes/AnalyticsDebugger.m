@@ -10,6 +10,8 @@
 #import "BarDebuggerView.h"
 #import "EventsListScreenViewController.h"
 #import "Util.h"
+#import "DebuggerMessage.h"
+#import "DebuggerProp.h"
 
 static UIView<DebuggerView> *debuggerView = nil;
 
@@ -122,15 +124,36 @@ CGFloat screenWidth;
 }
 
 - (void) publishEvent:(NSString *) eventName withTimestamp:(NSTimeInterval) timestamp
-            withId:(NSString *) eventId withMessages:(NSArray *) messages
-            withEventProps:(NSArray *) eventProps withUserProps:(NSArray *) userProps {
+            withId:(NSString *) eventId withMessages:(NSArray<NSDictionary *> *) messages
+            withEventProps:(NSArray<NSDictionary *> *) eventProps withUserProps:(NSArray<NSDictionary *> *) userProps {
     DebuggerEventItem * event = [DebuggerEventItem new];
     event.name = eventName;
     event.identifier = eventId;
     event.timestamp = timestamp;
-    event.messages = messages;
-    event.eventProps = eventProps;
-    event.userProps = userProps;
+    event.messages = [NSMutableArray new];
+    for (id message in messages) {
+        DebuggerMessage * debuggerMessage = [self createMessageWithDictionary:message];
+
+        if (debuggerMessage != nil) {
+            [event.messages addObject:debuggerMessage];
+        }
+    }
+    event.eventProps = [NSMutableArray new];
+    for (id prop in eventProps) {
+        DebuggerProp * eventProp = [self createPropWithDictionary:prop];
+
+        if (eventProp != nil) {
+            [event.eventProps addObject:eventProp];
+        }
+    }
+    event.userProps = [NSMutableArray new];
+    for (id prop in userProps) {
+        DebuggerProp * userProp = [self createPropWithDictionary:prop];
+
+        if (userProp != nil) {
+            [event.userProps addObject:userProp];
+        }
+    }
     
     NSInteger insertIndex = 0;
     for (int i = 0; i < [analyticsDebuggerEvents count]; i++) {
@@ -151,6 +174,37 @@ CGFloat screenWidth;
     if (onNewEventCallback != nil) {
         onNewEventCallback(event);
     }
+}
+
+- (DebuggerMessage *) createMessageWithDictionary: (NSDictionary *) messageDict {
+    NSString * tag = [messageDict objectForKey:@"tag"];
+    NSString * propertyId = [messageDict objectForKey:@"propertyId"];
+    NSString * message = [messageDict objectForKey:@"message"];
+
+    if (tag == nil || propertyId == nil || message == nil) {
+        return nil;
+    }
+
+    NSArray * allowedTypes = [[NSArray alloc] init];
+    NSString * allowedTypesString = [messageDict objectForKey:@"allowedTypes"];
+    if (allowedTypesString != nil) {
+        allowedTypes = [allowedTypesString componentsSeparatedByString: @","];
+    }
+
+    return [[DebuggerMessage alloc] initWithTag:tag withPropertyId:propertyId withMessage:message withAllowedTypes:allowedTypes
+                               withProvidedType:[messageDict objectForKey:@"providedType"]];
+}
+
+- (DebuggerProp *) createPropWithDictionary: (NSDictionary *) propDict {
+    NSString * id = [propDict objectForKey:@"id"];
+    NSString * name = [propDict objectForKey:@"name"];
+    NSString * value = [propDict objectForKey:@"value"];
+    
+    if (id == nil || name == nil || value == nil) {
+        return nil;
+    }
+    
+    return [[DebuggerProp alloc] initWithId:id withName:name withValue:value];
 }
 
 - (BOOL) isEnabled {

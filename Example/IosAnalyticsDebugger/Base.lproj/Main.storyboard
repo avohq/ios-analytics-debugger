@@ -142,7 +142,7 @@
                                 <rect key="frame" x="148" y="44" width="78" height="30"/>
                                 <state key="normal" title="Send event"/>
                                 <connections>
-                                    <action selector="pnSendEventClick:" destination="6Mf-HP-zgX" eventType="touchUpInside" id="ldx-zK-ekJ"/>
+                                    <action selector="onSendEventClick:" destination="6Mf-HP-zgX" eventType="touchUpInside" id="lXA-hc-1OG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZH-cS-acp">
