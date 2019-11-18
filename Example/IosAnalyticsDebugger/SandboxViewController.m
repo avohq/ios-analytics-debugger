@@ -11,9 +11,7 @@
 #import <DebuggerMessage.h>
 
 @interface AnalyticsDebugger(MyAdditions)
--(void) publishEvent:(NSString *) eventName withTimestamp:(NSTimeInterval) timestamp
-            withId:(NSString *) eventId withMessages:(NSArray<NSDictionary *> *) messages
-      withEventProps:(NSArray<NSDictionary *> *) eventProps withUserProps:(NSArray<NSDictionary *> *) userProps;
+-(void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params;
 
 -(BOOL) isEnabled;
 @end
@@ -43,7 +41,7 @@
     NSArray<NSDictionary *> * messages = @[@{@"tag" : @"tt", @"propertyId": @"id23gfds3", @"message": @"Event Id must be a NSString or char* but was a BOOL.",
                                              @"allowedTypes": @"NSString,char*", @"providedType": @"BOOL"}];
   
-    [[AVOAppDelegate debugger] publishEvent:@"Error Event" withTimestamp:[[NSDate date] timeIntervalSince1970] withId:@"asd23qd" withMessages:messages withEventProps:eventProps withUserProps:userProps];
+   [[AVOAppDelegate debugger] publishEvent:@"Error event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": messages, @"eventProps": eventProps, @"userProps": userProps}];
 }
 
 - (IBAction)onSendEventClick:(id)sender {
@@ -53,14 +51,13 @@
     NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"User Name", @"value": @"Vasily"},
                                             @{@"id" : @"id2rert", @"name": @"User Id", @"value": @"0"}];
     
-    
-    [[AVOAppDelegate debugger] publishEvent:@"Correct event" withTimestamp:[[NSDate date] timeIntervalSince1970] withId:@"weew342" withMessages:nil withEventProps:eventProps withUserProps:userProps];
+    [[AVOAppDelegate debugger] publishEvent:@"Correct event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": @[], @"eventProps": eventProps, @"userProps": userProps}];
 }
 
 - (IBAction)onSendDelayedClick:(id)sender {
-    [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
-        [[AVOAppDelegate debugger] publishEvent:@"Delayed" withTimestamp:[[NSDate date] timeIntervalSince1970] withId:@"dela345" withMessages:nil withEventProps:@[] withUserProps:@[]];
-    }];
+   [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
+      [[AVOAppDelegate debugger] publishEvent:@"Error event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": @[], @"eventProps": @[], @"userProps": @[]}];
+   }];
 }
 
 - (IBAction)shoBarDebugger:(id)sender {

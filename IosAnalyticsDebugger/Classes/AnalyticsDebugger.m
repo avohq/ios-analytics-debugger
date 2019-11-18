@@ -123,13 +123,18 @@ CGFloat screenWidth;
     }
 }
 
-- (void) publishEvent:(NSString *) eventName withTimestamp:(NSTimeInterval) timestamp
-            withId:(NSString *) eventId withMessages:(NSArray<NSDictionary *> *) messages
-            withEventProps:(NSArray<NSDictionary *> *) eventProps withUserProps:(NSArray<NSDictionary *> *) userProps {
+- (void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params {
+    
+    NSNumber * timestamp = [params objectForKey: @"timestamp"];
+    NSString * eventId = [params objectForKey: @"id"];
+    NSArray<NSDictionary *> * messages = [params objectForKey: @"messages"];
+    NSArray<NSDictionary *> * eventProps = [params objectForKey: @"eventProps"];
+    NSArray<NSDictionary *> * userProps = [params objectForKey: @"userProps"];
+    
     DebuggerEventItem * event = [DebuggerEventItem new];
     event.name = eventName;
     event.identifier = eventId;
-    event.timestamp = timestamp;
+    event.timestamp = [timestamp doubleValue];
     event.messages = [NSMutableArray new];
     for (id message in messages) {
         DebuggerMessage * debuggerMessage = [self createMessageWithDictionary:message];
