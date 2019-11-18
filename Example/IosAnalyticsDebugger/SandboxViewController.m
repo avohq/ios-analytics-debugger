@@ -10,12 +10,6 @@
 #import <DebuggerProp.h>
 #import <DebuggerMessage.h>
 
-@interface AnalyticsDebugger(MyAdditions)
--(void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params;
-
--(BOOL) isEnabled;
-@end
-
 @interface SandboxViewController ()
 - (IBAction)onSendErrorClick:(id)sender;
 - (IBAction)onSendEventClick:(id)sender;

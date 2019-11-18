@@ -24,6 +24,8 @@ static OnNewEventCallback onNewEventCallback;
 -(void) showBarDebugger;
 -(void) showBubbleDebugger;
 -(void) hideDebugger;
+-(void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params;
+-(BOOL) isEnabled;
 
 @end
 
