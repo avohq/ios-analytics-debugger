@@ -1,0 +1,23 @@
+{
+  "avo": {
+    "version": 1
+  },
+  "schema": {
+    "id": "0cd8DLUxoxnhXaqRxL6O",
+    "name": "Analytics debugger example app"
+  },
+  "branch": {
+    "id": "uLrskdxzp",
+    "name": "ios"
+  },
+  "sources": [
+    {
+      "id": "DQ9ku0SjZ",
+      "name": "iOS objc",
+      "path": "Avo.m",
+      "actionId": "AbnL7hSD2b9hSLAozTFh",
+      "branchId": "uLrskdxzp",
+      "updatedAt": "2019-11-25T08:08:16.548Z"
+    }
+  ]
+}

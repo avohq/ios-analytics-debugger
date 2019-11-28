@@ -9,6 +9,7 @@
 #import "MusicPlayerLogic.h"
 #import <AnalyticsDebugger.h>
 #import "AVOAppDelegate.h"
+#import "Avo.h"
 
 
 @interface PlayerViewController ()
@@ -86,8 +87,10 @@
 - (IBAction)playPause:(id)sender {
     if ([[self.playPauseButton currentTitle] isEqual:@"PLAY"]) {
         [self play];
+        [Avo playWithCurrentSongName:[self.musicPlayerLogic currentTrackName]];
     } else {
         [self pause];
+        [Avo pauseWithCurrentSongName:[self.musicPlayerLogic currentTrackName]];
     }
 }
 
@@ -108,16 +111,24 @@
 }
 
 - (IBAction)nextTrack:(id)sender {
+    NSString * currentTrackBeforeSwitching = [self.musicPlayerLogic currentTrackName];
+    NSString * upcomingTrackBeforeSwitching = [self.musicPlayerLogic nextTrackName];
+    
     if ([self.musicPlayerLogic loadNextTrack]) {
         [self pause];
         [self showCurrentTrack];
+        [Avo playNextTrackWithCurrentSongName:currentTrackBeforeSwitching upcomingTrackName:upcomingTrackBeforeSwitching];
     }
 }
 
 - (IBAction)prevTrack:(id)sender {
+    NSString * currentTrackBeforeSwitching = [self.musicPlayerLogic currentTrackName];
+    NSString * upcomingTrackBeforeSwitching = [self.musicPlayerLogic prevTrackName];
+    
     if ([self.musicPlayerLogic loadPrevTrack]) {
         [self pause];
         [self showCurrentTrack];
+        [Avo playPreviousTrackWithCurrentSongName:currentTrackBeforeSwitching upcomingTrackName:upcomingTrackBeforeSwitching];
     }
 }
 
