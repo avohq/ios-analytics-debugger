@@ -53,6 +53,10 @@ CGFloat screenWidth;
     
     [debuggerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openEventsListScreen)]];
     [debuggerView addGestureRecognizer:self.panGestureRecognizer];
+    
+    if ([analyticsDebuggerEvents count] > 0) {
+        [debuggerView showEvent:[analyticsDebuggerEvents objectAtIndex:0]];
+    }
 }
 
 - (void) drugBar:(UIPanGestureRecognizer*)sender {
@@ -85,6 +89,11 @@ CGFloat screenWidth;
      
     [debuggerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openEventsListScreen)]];
     [debuggerView addGestureRecognizer:self.panGestureRecognizer];
+    
+    for (int index = (int)[analyticsDebuggerEvents count] - 1; index >= 0; index--) {
+        DebuggerEventItem * event = [analyticsDebuggerEvents objectAtIndex:index];
+        [debuggerView showEvent:event];
+    }
 }
 
 - (void) drugBubble:(UIPanGestureRecognizer*)sender {
