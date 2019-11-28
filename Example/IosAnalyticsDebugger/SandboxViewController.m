@@ -26,16 +26,20 @@
 }
 
 - (IBAction)onSendErrorClick:(id)sender {
-    NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"Event Id", @"value": @"YES"},
-                                             @{@"id" : @"id321343", @"name": @"Event Name", @"value": @"Commented"}];
+    BOOL isEnabled = [[AVOAppDelegate debugger] performSelector:@selector(isEnabled)];
     
-    NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"User Name", @"value": @"Vasily"},
-                                            @{@"id" : @"id2rert", @"name": @"User Id", @"value": @"0"}];
-    
-    NSArray<NSDictionary *> * messages = @[@{@"tag" : @"tt", @"propertyId": @"id23gfds3", @"message": @"Event Id must be a NSString or char* but was a BOOL.",
-                                             @"allowedTypes": @"NSString,char*", @"providedType": @"BOOL"}];
-  
-   [[AVOAppDelegate debugger] publishEvent:@"Error event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": messages, @"eventProps": eventProps, @"userProps": userProps}];
+    if (isEnabled) {
+        NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"Event Id", @"value": @"YES"},
+                                                 @{@"id" : @"id321343", @"name": @"Event Name", @"value": @"Commented"}];
+        
+        NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"User Name", @"value": @"Vasily"},
+                                                @{@"id" : @"id2rert", @"name": @"User Id", @"value": @"0"}];
+        
+        NSArray<NSDictionary *> * messages = @[@{@"tag" : @"tt", @"propertyId": @"id23gfds3", @"message": @"Event Id must be a NSString or char* but was a BOOL.",
+                                                 @"allowedTypes": @"NSString,char*", @"providedType": @"BOOL"}];
+        
+        [[AVOAppDelegate debugger] performSelector:@selector(publishEvent:withParams:) withObject:@"Error event" withObject:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": messages, @"eventProps": eventProps, @"userProps": userProps}];
+    }
 }
 
 - (IBAction)onSendEventClick:(id)sender {

@@ -6,6 +6,8 @@
 //
 
 #import "AVOAppDelegate.h"
+#import "Avo.h"
+#import "AVOVoidDestination.h"
 
 static AnalyticsDebugger *debugger = nil;
 
@@ -16,6 +18,8 @@ static AnalyticsDebugger *debugger = nil;
     if (debugger == nil) {
         debugger = [AnalyticsDebugger new];
     }
+    [Avo initAvoWithEnv:AVOEnvDev customDestination:[AVOVoidDestination new] debugger:debugger];
+    [Avo appOpened];
     
     return YES;
 }
