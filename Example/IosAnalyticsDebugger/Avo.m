@@ -142,7 +142,7 @@ NSString * toISO8601UTC(NSDate *date) {
 @implementation Avo
 
 static AVOEnv __ENV__ = -1;
-static BOOL __STRICT__ = NO;
+static BOOL __STRICT__ = YES;
 
 static NSObject * __DEBUGGER__ = nil;
 
@@ -262,7 +262,7 @@ static id<AVOCustomDestination> custom = nil;
   debugger:(nonnull NSObject *)debugger
 {
   __DEBUGGER__ = debugger;
-  BOOL strict = debugger == nil;;
+  BOOL strict = debugger == nil;
   
   [self initAvoWithEnv:env customDestination:customDestination strict:strict];
 }
@@ -270,7 +270,7 @@ static id<AVOCustomDestination> custom = nil;
 + (void)initAvoWithEnv:(AVOEnv)env
   customDestination:(nonnull id<AVOCustomDestination>)customDestination
 {
-  [self initAvoWithEnv:env customDestination:customDestination strict:NO];
+  [self initAvoWithEnv:env customDestination:customDestination strict:YES];
 }
 
 + (void)initAvoWithEnv:(AVOEnv)env
@@ -319,7 +319,7 @@ static id<AVOCustomDestination> custom = nil;
      NSArray *messages = @[];
      // debug console in Avo
      [AvoInvoke invoke:@"oZvpnm2MM" hash:@"98ec7005896737f35a50b7807105cb8b888e90a54d69861d8c055659665448dc" messages:messages];
-     if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ != AVOEnvProd && [self mobileDebuggerEnabled])) {
+     if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ == AVOEnvProd && [self mobileDebuggerEnabled])) {
        // Avo mobile debugger
        NSArray<NSDictionary *> * eventProps = @[];
        NSArray<NSDictionary *> * userProps = @[];
@@ -357,7 +357,7 @@ static id<AVOCustomDestination> custom = nil;
     [messages addObjectsFromArray:[self assertCurrentSongName:currentSongName]];
     // debug console in Avo
     [AvoInvoke invoke:@"6p9dLEHQVr" hash:@"ec05900baed9766dca1e6513471efdd70674d3969afbfe88d7a52fcf9c8e71fa" messages:messages];
-    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ != AVOEnvProd && [self mobileDebuggerEnabled])) {
+    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ == AVOEnvProd && [self mobileDebuggerEnabled])) {
       // Avo mobile debugger
       NSArray<NSDictionary *> * eventProps = @[
         @{@"id" : @"kwANmf381A", @"name" : @"Current Song Name", @"value" : currentSongName ? [currentSongName description] : @"nil"}];
@@ -414,7 +414,7 @@ static id<AVOCustomDestination> custom = nil;
     [messages addObjectsFromArray:[self assertCurrentSongName:currentSongName]];
     // debug console in Avo
     [AvoInvoke invoke:@"Ei7HeAerpy" hash:@"b47fccf84f89843a571e956e21e80d782ad90a32c522cf836bfbe8e15c93df32" messages:messages];
-    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ != AVOEnvProd && [self mobileDebuggerEnabled])) {
+    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ == AVOEnvProd && [self mobileDebuggerEnabled])) {
       // Avo mobile debugger
       NSArray<NSDictionary *> * eventProps = @[
         @{@"id" : @"kwANmf381A", @"name" : @"Current Song Name", @"value" : currentSongName ? [currentSongName description] : @"nil"}];
@@ -474,7 +474,7 @@ static id<AVOCustomDestination> custom = nil;
     [messages addObjectsFromArray:[self assertUpcomingTrackName:upcomingTrackName]];
     // debug console in Avo
     [AvoInvoke invoke:@"rQvcOWggzs" hash:@"d4eda9725d6ab2d4b4c0de6c88236ec8cff7c1e55edde95bcf0c4b7e8c512f26" messages:messages];
-    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ != AVOEnvProd && [self mobileDebuggerEnabled])) {
+    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ == AVOEnvProd && [self mobileDebuggerEnabled])) {
       // Avo mobile debugger
       NSArray<NSDictionary *> * eventProps = @[
         @{@"id" : @"kwANmf381A", @"name" : @"Current Song Name", @"value" : currentSongName ? [currentSongName description] : @"nil"},
@@ -541,7 +541,7 @@ static id<AVOCustomDestination> custom = nil;
     [messages addObjectsFromArray:[self assertUpcomingTrackName:upcomingTrackName]];
     // debug console in Avo
     [AvoInvoke invoke:@"xBjjLugyOM" hash:@"c0dc062dc9b955d054a7bf9fa68181d55f8c20f972bbb8bd709c6348a45b61b4" messages:messages];
-    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ != AVOEnvProd && [self mobileDebuggerEnabled])) {
+    if ((__ENV__ != AVOEnvProd && __DEBUGGER__ != nil) || (__ENV__ == AVOEnvProd && [self mobileDebuggerEnabled])) {
       // Avo mobile debugger
       NSArray<NSDictionary *> * eventProps = @[
         @{@"id" : @"kwANmf381A", @"name" : @"Current Song Name", @"value" : currentSongName ? [currentSongName description] : @"nil"},
