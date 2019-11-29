@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'IosAnalyticsDebugger'
-  s.version          = '0.2.2'
+  s.version          = '0.2.3'
   s.summary          = 'The Avo iOS debugger'
 
   s.description      = 'Togglable UI to show list of background events, useful to check analytics events in debug builds'
