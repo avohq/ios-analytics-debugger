@@ -139,7 +139,7 @@
     
     for (int i = 0; i < [self.event.messages count]; i++) {
         DebuggerMessage *messageData = [self.event.messages objectAtIndex:i];
-        if (messageData.propertyId == prop.id) {
+        if ([messageData.propertyId isEqualToString:prop.id]) {
             [cell showError:[self formatErrorMessage:messageData propertyName:prop.name]];
             
             break;
