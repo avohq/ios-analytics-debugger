@@ -161,7 +161,7 @@ static NSObject * __DEBUGGER__ = nil;
   NSString* type = [NSString stringWithUTF8String:[value objCType]];
   if (![type isEqualToString:@"i"]) {
     return @[@{@"tag": @"expectedIntType", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ should be of type int but you provided %@", propertyName, type]}];
+        @"message": [NSString stringWithFormat:@"%@ should be of type int but you provided %@", propertyName, type]}];
   }
   return @[];
 }
@@ -171,7 +171,7 @@ static NSObject * __DEBUGGER__ = nil;
   NSString* type = [NSString stringWithUTF8String:[value objCType]];
   if (![type isEqualToString:@"d"]) {
     return @[@{@"tag": @"expectedFloatType", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ should be of type float but you provided %@", propertyName, type]}];
+        @"message": [NSString stringWithFormat:@"%@ should be of type float but you provided %@", propertyName, type]}];
   }
   return @[];
 }
@@ -181,7 +181,7 @@ static NSObject * __DEBUGGER__ = nil;
   NSString* type = [NSString stringWithUTF8String:[value objCType]];
   if (![type isEqualToString:@"c"]) {
     return @[@{@"tag": @"expectedBoolType", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ should be of type bool but you provided %@", propertyName, type]}];
+        @"message": [NSString stringWithFormat:@"%@ should be of type bool but you provided %@", propertyName, type]}];
   }
   return @[];
 }
@@ -190,7 +190,7 @@ static NSObject * __DEBUGGER__ = nil;
 {
   if (value == nil) {
     return @[@{@"tag": @"expectedNonOptional", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ is a required property but you provided null", propertyName]}];
+        @"message": [NSString stringWithFormat:@"%@ is a required property but you provided null", propertyName]}];
   }
   return @[];
 }
@@ -199,7 +199,7 @@ static NSObject * __DEBUGGER__ = nil;
 {
   if (value > max) {
     return @[@{@"tag": @"expectedMax", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ has a maximum value of %@ but you provided the value %@", propertyName, @(max), @(value)]}];
+        @"message": [NSString stringWithFormat:@"%@ has a maximum value of %@ but you provided the value %@", propertyName, @(max), @(value)]}];
   }
   return @[];
 }
@@ -208,7 +208,7 @@ static NSObject * __DEBUGGER__ = nil;
 {
   if (value > max) {
     return @[@{@"tag": @"expectedMax", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ has a maximum value of %@ but you provided the value %@", propertyName, @(max), @(value)]}];
+        @"message": [NSString stringWithFormat:@"%@ has a maximum value of %@ but you provided the value %@", propertyName, @(max), @(value)]}];
   }
   return @[];
 }
@@ -217,7 +217,7 @@ static NSObject * __DEBUGGER__ = nil;
 {
   if (value < min) {
     return @[@{@"tag": @"expectedMin", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ has a minimum value of %@ but you provided the value %@", propertyName, @(min), @(value)]}];
+        @"message": [NSString stringWithFormat:@"%@ has a minimum value of %@ but you provided the value %@", propertyName, @(min), @(value)]}];
   }
   return @[];
 }
@@ -226,7 +226,7 @@ static NSObject * __DEBUGGER__ = nil;
 {
   if (value < min) {
     return @[@{@"tag": @"expectedMin", @"propertyId": propertyId,
-        @"message": [NSString stringWithFormat:@"[avo] ERROR %@ has a minimum value of %@ but you provided the value %@", propertyName, @(min), @(value)]}];
+        @"message": [NSString stringWithFormat:@"%@ has a minimum value of %@ but you provided the value %@", propertyName, @(min), @(value)]}];
   }
   return @[];
 }
@@ -235,7 +235,7 @@ static NSObject * __DEBUGGER__ = nil;
 {
   if (value < 0) {
     return @[@{@"tag": @"expectedInitializedEnum", @"propertyId": propertyId,
-        @"message":[NSString stringWithFormat:@"[avo] ERROR %@ must not be a NULL enum", propertyName]}];
+        @"message":[NSString stringWithFormat:@"%@ must not be a NULL enum", propertyName]}];
   }
   return @[];
 }
@@ -372,7 +372,7 @@ static id<AVOCustomDestination> custom = nil;
         }
       } else {
         for (id message in messages) {
-          NSLog(@"%@", [message objectForKey:@"message"]);
+          NSLog(@"[avo] ERROR %@", [message objectForKey:@"message"]);
         }
       }
     }
@@ -429,7 +429,7 @@ static id<AVOCustomDestination> custom = nil;
         }
       } else {
         for (id message in messages) {
-          NSLog(@"%@", [message objectForKey:@"message"]);
+          NSLog(@"[avo] ERROR %@", [message objectForKey:@"message"]);
         }
       }
     }
@@ -490,7 +490,7 @@ static id<AVOCustomDestination> custom = nil;
         }
       } else {
         for (id message in messages) {
-          NSLog(@"%@", [message objectForKey:@"message"]);
+          NSLog(@"[avo] ERROR %@", [message objectForKey:@"message"]);
         }
       }
     }
@@ -557,7 +557,7 @@ static id<AVOCustomDestination> custom = nil;
         }
       } else {
         for (id message in messages) {
-          NSLog(@"%@", [message objectForKey:@"message"]);
+          NSLog(@"[avo] ERROR %@", [message objectForKey:@"message"]);
         }
       }
     }
