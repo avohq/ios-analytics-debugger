@@ -31,7 +31,7 @@
     [super awakeFromNib];
     
     [self.mainRow addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleExpend)]];
-    
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     UINib *eventSecondatyRowItemNib = [UINib nibWithNibName:@"EventTableViewSecondaryCell" bundle:bundle];
     [self.additionalRows registerNib:eventSecondatyRowItemNib forCellReuseIdentifier:@"EventTableViewSecondaryCell"];
@@ -59,7 +59,10 @@
 - (void) expend {
     if (![self expended]) {
         self.additionalRowsHeight.constant = self.additionalRowsExpendedHeight;
-        self.additionalRows.hidden = false;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^ {
+            self.additionalRows.hidden = false;
+        });
        
         [self layoutIfNeeded];
         [self setNeedsUpdateConstraints];
@@ -117,8 +120,7 @@
     if ([self expended]) {
         self.additionalRowsHeight.constant = self.additionalRowsExpendedHeight;
         self.additionalRows.hidden = false;
-          
-        [self layoutIfNeeded];
+
         [self setNeedsUpdateConstraints];
     }
 }
