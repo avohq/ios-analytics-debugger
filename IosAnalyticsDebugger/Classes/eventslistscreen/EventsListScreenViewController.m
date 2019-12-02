@@ -23,11 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UITableView * __weak weakTableView = self.eventsTableView;
-    [AnalyticsDebugger setOnNewEventCallback:^(DebuggerEventItem * _Nonnull item) {
-        [weakTableView reloadData];
-    }];
    
     [self.closeButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSelf)]];
     
@@ -38,12 +33,19 @@
     UINib *eventItemNib = [UINib nibWithNibName:@"EventTableViewCell" bundle:bundle];
       
     [self.eventsTableView registerNib:eventItemNib forCellReuseIdentifier:@"EventTableViewCell"];
+    
+    [self.eventsTableView setDelegate:self];
+    [self.eventsTableView setDataSource:self];
+     
+    UITableView * __weak weakTableView = self.eventsTableView;
+    [AnalyticsDebugger setOnNewEventCallback:^(DebuggerEventItem * _Nonnull item) {
+        [weakTableView reloadData];
+    }];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    [self.eventsTableView setDelegate:self];
-    [self.eventsTableView setDataSource:self];
-      
+    [super viewDidAppear: animated];
+    
     self.eventsTableView.tableFooterView = [UIView new];
 }
 
@@ -98,13 +100,13 @@
 }
 
 - (void) setExpendedStatus:(BOOL) expended forEvent:(DebuggerEventItem *) event  {
+    [self.eventsTableView beginUpdates];
     if (expended) {
         [self.expendedEvents addObject:event];
     } else {
         [self.expendedEvents removeObject:event];
     }
-    
-    [self.eventsTableView reloadData];
+    [self.eventsTableView endUpdates];
 }
 
 @end
