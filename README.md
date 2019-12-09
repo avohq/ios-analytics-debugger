@@ -19,6 +19,58 @@ it, simply add the following line to your Podfile:
 pod 'IosAnalyticsDebugger'
 ```
 
+# Create the debugger manager instance
+
+Obj-C
+
+    AnalyticsDebugger * debugger = [AnalyticsDebugger new];
+
+Swift
+
+    let debugger = AnalyticsDebugger()
+
+# Show the debugger
+
+Obj-C
+
+    [debugger showBubbleDebugger];
+    
+or
+
+    [debugger showBarDebugger];
+
+Swift
+  
+    debugger.showBubble()
+    
+or
+
+    debugger.showBarDebugger()
+
+# Hide the debugger
+
+Obj-C
+
+    [debugger hideDebugger];
+    
+Swift
+
+    debugger.hide()
+
+# Using with Avo
+
+Obj-C
+
+    [Avo initAvoWithEnv:AVOEnvDev customDestination:[CustomDestination new] debugger:debugger];
+    [Avo appOpened];
+
+Swift
+
+    Avo.initAvo(env: AvoEnv.dev, customDestination: CustomDestiation(), debugger: debugger)
+    Avo.appOpened()
+
+Then after you call showDebugger in your activity the debugger view will appear with the App Opened event inside.
+
 ## Author
 
 Avo (https://www.avo.app), friends@avo.app
