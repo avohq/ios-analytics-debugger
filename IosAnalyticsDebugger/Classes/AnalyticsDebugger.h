@@ -26,6 +26,7 @@ static OnNewEventCallback onNewEventCallback;
 -(void) hideDebugger;
 -(void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params;
 -(BOOL) isEnabled;
+-(void) setSchemaId:(NSString *) schemaId;
 
 @end
 
