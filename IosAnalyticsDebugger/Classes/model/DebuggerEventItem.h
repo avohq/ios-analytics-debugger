@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DebuggerMessage.h"
+#import "DebuggerProp.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readwrite) NSString *identifier;
 @property NSTimeInterval timestamp;
 @property (strong, nonatomic, readwrite) NSString *name;
-@property (strong, nonatomic, readwrite) NSMutableArray *messages;
-@property (strong, nonatomic, readwrite) NSMutableArray *eventProps;
-@property (strong, nonatomic, readwrite) NSMutableArray *userProps;
+@property (strong, nonatomic, readwrite) NSMutableArray<DebuggerMessage *> *messages;
+@property (strong, nonatomic, readwrite) NSMutableArray<DebuggerProp *> *eventProps;
+@property (strong, nonatomic, readwrite) NSMutableArray<DebuggerProp *> *userProps;
 
 @end
 
