@@ -283,7 +283,7 @@ NSString *currentSchemaId;
         return nil;
     }
 
-    return [[DebuggerMessage alloc] initWithPropertyId:propertyId withMessage:message withAllowedTypes:[NSArray new] withProvidedType:nil];
+    return [[DebuggerMessage alloc] initWithPropertyId:propertyId withMessage:message withAllowedTypes:[NSArray new] withProvidedType:@""];
 }
 
 - (DebuggerMessage *) createMessageWithDictionary: (NSDictionary *) messageDict {
