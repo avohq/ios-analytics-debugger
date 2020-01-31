@@ -72,6 +72,13 @@ Obj-C
 
     [debugger publishEvent:@"Test Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
         withProperties:props withErrors:errors];
+        
+Swift
+
+    debugger.publishEvent("Test Event", withTimestamp: NSNumber(value: NSDate().timeIntervalSince1970),
+        withProperties: [DebuggerProp(id: "id0", withName: "prop 0", withValue: "value 0"), 
+                         DebuggerProp(id: "id1", withName: "prop 1", withValue: "value 1")], 
+        withErrors: [DebuggerPropError(propertyId: "id0", withMessage: "error in event with id0")]);
 
 # Using with Avo
 
