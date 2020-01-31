@@ -210,7 +210,7 @@ NSString *currentSchemaId;
         }
     }
     
-    sendEventToAnalyticsDebugger(event);
+    [self sendEventToAnalyticsDebugger:event];
 }
 
 - (void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params {
@@ -250,10 +250,10 @@ NSString *currentSchemaId;
         }
     }
     
-    sendEventToAnalyticsDebugger(event);
+    [self sendEventToAnalyticsDebugger:event];
 }
 
-static void sendEventToAnalyticsDebugger(DebuggerEventItem *event) {
+-(void) sendEventToAnalyticsDebugger:(DebuggerEventItem *) event {
     NSInteger insertIndex = 0;
     for (int i = 0; i < [analyticsDebuggerEvents count]; i++) {
         DebuggerEventItem *presentEvent = [analyticsDebuggerEvents objectAtIndex:i];

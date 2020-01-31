@@ -1,19 +1,19 @@
 {
   "name": "IosAnalyticsDebugger",
-  "version": "0.1.0",
-  "summary": "A short description of IosAnalyticsDebugger.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Alexey Verein/IosAnalyticsDebugger",
+  "version": "1.0.2",
+  "summary": "The Avo iOS debugger",
+  "description": "Togglable UI to show list of background events, useful to check analytics events in debug builds",
+  "homepage": "https://github.com/avohq/ios-analytics-debugger.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "Alexey Verein": "tpom6oh@gmail.com"
+    "Avo (https://www.avo.app)": "friends@avo.app"
   },
   "source": {
-    "git": "https://github.com/Alexey Verein/IosAnalyticsDebugger.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/avohq/ios-analytics-debugger.git",
+    "tag": "1.0.2"
   },
   "platforms": {
     "ios": "11.0"
