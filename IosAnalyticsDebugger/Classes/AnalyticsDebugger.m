@@ -12,6 +12,7 @@
 #import "Util.h"
 #import "DebuggerMessage.h"
 #import "DebuggerProp.h"
+#import "DebuggerPropError.h"
 #import <Foundation/Foundation.h>
 
 static UIView<DebuggerView> *debuggerView = nil;
@@ -188,6 +189,30 @@ NSString *currentSchemaId;
     currentSchemaId = schemaId;
 }
 
+- (void) publishEvent:(NSString *) eventName withTimestamp:(NSNumber *) timestamp withProperties:(NSArray<DebuggerProp *> *) props withErrors:(NSArray<DebuggerPropError *> *) errors {
+    
+    DebuggerEventItem * event = [DebuggerEventItem new];
+    
+    event.name = eventName;
+    event.timestamp = [timestamp doubleValue];
+    event.messages = [NSMutableArray new];
+    for (id error in errors) {
+        DebuggerMessage * debuggerMessage = [self createMessageWithError:error];
+
+        if (debuggerMessage != nil) {
+            [event.messages addObject:debuggerMessage];
+        }
+    }
+    event.eventProps = [NSMutableArray new];
+    for (id prop in props) {
+        if (prop != nil) {
+            [event.eventProps addObject:prop];
+        }
+    }
+    
+    [self sendEventToAnalyticsDebugger:event];
+}
+
 - (void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params {
     
     NSNumber * timestamp = [params objectForKey: @"timestamp"];
@@ -225,6 +250,10 @@ NSString *currentSchemaId;
         }
     }
     
+    [self sendEventToAnalyticsDebugger:event];
+}
+
+-(void) sendEventToAnalyticsDebugger:(DebuggerEventItem *) event {
     NSInteger insertIndex = 0;
     for (int i = 0; i < [analyticsDebuggerEvents count]; i++) {
         DebuggerEventItem *presentEvent = [analyticsDebuggerEvents objectAtIndex:i];
@@ -246,12 +275,22 @@ NSString *currentSchemaId;
     }
 }
 
+- (DebuggerMessage *) createMessageWithError: (DebuggerPropError *) error {
+    NSString * propertyId = error.propertyId;
+    NSString * message = error.message;
+
+    if (propertyId == nil || message == nil) {
+        return nil;
+    }
+
+    return [[DebuggerMessage alloc] initWithPropertyId:propertyId withMessage:message withAllowedTypes:[NSArray new] withProvidedType:@""];
+}
+
 - (DebuggerMessage *) createMessageWithDictionary: (NSDictionary *) messageDict {
-    NSString * tag = [messageDict objectForKey:@"tag"];
     NSString * propertyId = [messageDict objectForKey:@"propertyId"];
     NSString * message = [messageDict objectForKey:@"message"];
 
-    if (tag == nil || propertyId == nil || message == nil) {
+    if (propertyId == nil || message == nil) {
         return nil;
     }
 
@@ -261,7 +300,7 @@ NSString *currentSchemaId;
         allowedTypes = [allowedTypesString componentsSeparatedByString: @","];
     }
 
-    return [[DebuggerMessage alloc] initWithTag:tag withPropertyId:propertyId withMessage:message withAllowedTypes:allowedTypes
+    return [[DebuggerMessage alloc] initWithPropertyId:propertyId withMessage:message withAllowedTypes:allowedTypes
                                withProvidedType:[messageDict objectForKey:@"providedType"]];
 }
 

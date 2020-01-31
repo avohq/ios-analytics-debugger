@@ -56,6 +56,22 @@ Obj-C
 Swift
 
     debugger.hide()
+    
+# Post an event
+
+Obj-C
+
+    NSMutableArray * props = [NSMutableArray new];
+
+    [props addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"id0 event" withValue:@"value 0"]];
+    [props addObject:[[DebuggerProp alloc] initWithId:@"id1" withName:@"id1 event" withValue:@"value 1"]];
+
+    NSMutableArray * errors = [NSMutableArray new];
+
+    [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"error in event id0"]];
+
+    [debugger publishEvent:@"Test Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+        withProperties:props withErrors:errors];
 
 # Using with Avo
 

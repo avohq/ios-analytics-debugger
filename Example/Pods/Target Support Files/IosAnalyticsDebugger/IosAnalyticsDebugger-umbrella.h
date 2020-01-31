@@ -17,6 +17,7 @@
 #import "DebuggerEventItem.h"
 #import "DebuggerMessage.h"
 #import "DebuggerProp.h"
+#import "DebuggerPropError.h"
 #import "Util.h"
 #import "BarDebuggerView.h"
 #import "BubbleDebuggerView.h"
