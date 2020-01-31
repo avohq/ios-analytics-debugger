@@ -36,7 +36,7 @@ static AnalyticsDebugger *debugger = nil;
     
     [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"error in event id0"]];
     
-    [debugger publishEvent:@"Test Evemt" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+    [debugger publishEvent:@"Test Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
             withProperties:props withErrors:errors];
 }
 
