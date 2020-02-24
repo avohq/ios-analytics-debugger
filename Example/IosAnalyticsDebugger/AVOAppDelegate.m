@@ -26,7 +26,8 @@ static AnalyticsDebugger *debugger = nil;
     return YES;
 }
 
-- (void)sendTestEventToDebugger {
+- (void)sendTestEventToDebugger
+{
     NSMutableArray * props = [NSMutableArray new];
     
     [props addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"id0 event" withValue:@"value 0"]];
@@ -39,7 +40,6 @@ static AnalyticsDebugger *debugger = nil;
     [debugger publishEvent:@"Test Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
             withProperties:props withErrors:errors];
 }
-
 
 + (AnalyticsDebugger *) debugger {
     return debugger;

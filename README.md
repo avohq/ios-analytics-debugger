@@ -19,7 +19,7 @@ it, simply add the following line to your Podfile:
 pod 'IosAnalyticsDebugger'
 ```
 
-# Create the debugger manager instance
+# Create the debugger instance
 
 Obj-C
 

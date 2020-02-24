@@ -91,17 +91,17 @@ NSString *currentSchemaId;
     NSString *version = [[[NSBundle bundleForClass:[AnalyticsDebugger class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
        
     NSMutableDictionary *eventProperties = [NSMutableDictionary new];
-    [eventProperties setValue:(currentSchemaId != nil ? currentSchemaId : @"n/a") forKey:@"schemaId"];
-    [eventProperties setValue:@"Ios Debugger" forKey:@"client"];
-    [eventProperties setValue:version forKey:@"version"];
+    [eventProperties setValue:(currentSchemaId != nil ? currentSchemaId : @"n/a") forKey:@"Schema Id"];
+    [eventProperties setValue:@"Ios Debugger" forKey:@"Client"];
+    [eventProperties setValue:version forKey:@"Version"];
        
     UIDevice *device = [UIDevice currentDevice];
     NSString  *deviceId = [[device identifierForVendor]UUIDString];
        
     NSMutableDictionary *body = [NSMutableDictionary new];
-    [body setValue:deviceId forKey:@"deviceId"];
-    [body setValue:@"Debugger Started" forKey:@"eventName"];
-    [body setValue:eventProperties forKey:@"eventProperties"];
+    [body setValue:deviceId forKey:@"Device Id"];
+    [body setValue:@"Debugger Started" forKey:@"Event Name"];
+    [body setValue:eventProperties forKey:@"Event Properties"];
        
     NSError *error;
     NSData *bodyData = [NSJSONSerialization dataWithJSONObject:body
