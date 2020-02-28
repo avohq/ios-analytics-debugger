@@ -30,14 +30,14 @@ static AnalyticsDebugger *debugger = nil;
 {
     NSMutableArray * props = [NSMutableArray new];
     
-    [props addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"id0 event" withValue:@"value 0"]];
-    [props addObject:[[DebuggerProp alloc] initWithId:@"id1" withName:@"id1 event" withValue:@"value 1"]];
+    [props addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"Property with error" withValue:@"unknown"]];
+    [props addObject:[[DebuggerProp alloc] initWithId:@"id1" withName:@"Good property" withValue:@"true"]];
     
     NSMutableArray * errors = [NSMutableArray new];
     
-    [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"error in event id0"]];
+    [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"'Unknown' value is not supported in this property."]];
     
-    [debugger publishEvent:@"Test Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+    [debugger publishEvent:@"Event with Error" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
             withProperties:props withErrors:errors];
 }
 
