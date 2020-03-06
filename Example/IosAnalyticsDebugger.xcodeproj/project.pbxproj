@@ -433,12 +433,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-IosAnalyticsDebugger_Example/Pods-IosAnalyticsDebugger_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AvoStateOfTracking/AvoStateOfTracking.framework",
+				"${BUILT_PRODUCTS_DIR}/AvoInspector/AvoInspector.framework",
 				"${BUILT_PRODUCTS_DIR}/IosAnalyticsDebugger/IosAnalyticsDebugger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoStateOfTracking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoInspector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IosAnalyticsDebugger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

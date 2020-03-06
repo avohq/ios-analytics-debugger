@@ -6,22 +6,22 @@
 //
 
 #import "AVODatascopeDestination.h"
-#import <AvoStateOfTracking/AvoStateOfTracking.h>
+#import <AvoInspector/AvoInspector.h>
 
 @implementation AVODatascopeDestination
 
-AvoStateOfTracking * avoSot;
+AvoInspector * avoInspector;
 
 - (void)identify:(nonnull NSString *)userId {
     
 }
 
 - (void)logEvent:(nonnull NSString *)eventName withEventProperties:(nonnull NSDictionary *)eventProperties {
-    [avoSot trackSchemaFromEvent:eventName eventParams:eventProperties];
+    [avoInspector trackSchemaFromEvent:eventName eventParams:eventProperties];
 }
 
 - (void)make:(AVOEnv)avoEnv {
-    avoSot = [[AvoStateOfTracking alloc] initWithApiKey:@"AKwAt6gmO8h4mBb2JcFn" isDev: avoEnv == AVOEnvDev];
+    avoInspector = [[AvoInspector alloc] initWithApiKey:@"AKwAt6gmO8h4mBb2JcFn" isDev: avoEnv == AVOEnvDev];
 }
 
 - (void)setUserProperties:(nonnull NSString *)userId withUserProperties:(nonnull NSDictionary *)userProperties {
