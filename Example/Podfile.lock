@@ -1,4 +1,5 @@
 PODS:
+  - AvoStateOfTracking (0.9.2)
   - Expecta (1.0.6)
   - "Expecta+Snapshots (3.1.1)":
     - Expecta (~> 1.0)
@@ -13,6 +14,7 @@ PODS:
   - Specta (1.0.7)
 
 DEPENDENCIES:
+  - AvoStateOfTracking (~> 0.9.2)
   - Expecta
   - "Expecta+Snapshots"
   - FBSnapshotTestCase
@@ -21,6 +23,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AvoStateOfTracking
     - Expecta
     - "Expecta+Snapshots"
     - FBSnapshotTestCase
@@ -31,12 +34,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  AvoStateOfTracking: 57a17feea9f497bfb40868d5cc50fc49abe02d03
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   "Expecta+Snapshots": dcff217eef506dabd6dfdc7864ea2da321fafbb8
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   IosAnalyticsDebugger: c2ca9852d87d64f986b043535b17d648ff0824ae
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: e86ce87348b6479a8f34062acf5b6b1c123d6330
+PODFILE CHECKSUM: 2f6aa3eb9272cc60574ce76656c8d96e21431fb9
 
 COCOAPODS: 1.9.0.beta.2
