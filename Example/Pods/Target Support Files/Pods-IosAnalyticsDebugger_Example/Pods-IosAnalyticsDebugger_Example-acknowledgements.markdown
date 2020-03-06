@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## AvoStateOfTracking
+## AvoInspector
 
 Copyright (c) 2020 Alexey Verein <tpom6oh@gmail.com>
 
