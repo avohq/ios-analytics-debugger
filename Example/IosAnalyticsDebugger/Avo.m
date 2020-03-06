@@ -2,6 +2,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Avo.h"
+
 #pragma GCC diagnostic ignored "-Wundeclared-selector"
 
 @interface NSArray (Map)

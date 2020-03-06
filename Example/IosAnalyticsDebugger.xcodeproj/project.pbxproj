@@ -29,7 +29,7 @@
 		6E8042CC2379A3FA00AB7C54 /* MusicStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8042CB2379A3FA00AB7C54 /* MusicStorage.m */; };
 		6E8042CF2379A6A700AB7C54 /* MusicPlayerLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8042CE2379A6A700AB7C54 /* MusicPlayerLogic.m */; };
 		6E9B69752379C19700F7032B /* SandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B69742379C19700F7032B /* SandboxViewController.m */; };
-		6ECEE61D238BFCD200384E9B /* AVOVoidDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEE61C238BFCD200384E9B /* AVOVoidDestination.m */; };
+		6ECEE61D238BFCD200384E9B /* AVODatascopeDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEE61C238BFCD200384E9B /* AVODatascopeDestination.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		78A80FBA1670A5648143599E /* Pods_IosAnalyticsDebugger_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA13B546A4AC4A02AFD3C4E /* Pods_IosAnalyticsDebugger_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
@@ -85,8 +85,8 @@
 		6E9B69732379C19700F7032B /* SandboxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SandboxViewController.h; sourceTree = "<group>"; };
 		6E9B69742379C19700F7032B /* SandboxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SandboxViewController.m; sourceTree = "<group>"; };
 		6ECEE618238BFA1600384E9B /* Avo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avo.h; sourceTree = "<group>"; };
-		6ECEE61B238BFCD200384E9B /* AVOVoidDestination.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVOVoidDestination.h; sourceTree = "<group>"; };
-		6ECEE61C238BFCD200384E9B /* AVOVoidDestination.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVOVoidDestination.m; sourceTree = "<group>"; };
+		6ECEE61B238BFCD200384E9B /* AVODatascopeDestination.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVODatascopeDestination.h; sourceTree = "<group>"; };
+		6ECEE61C238BFCD200384E9B /* AVODatascopeDestination.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVODatascopeDestination.m; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7227854F05E1001A1E623CE2 /* IosAnalyticsDebugger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IosAnalyticsDebugger.podspec; path = ../IosAnalyticsDebugger.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 				6E9B69732379C19700F7032B /* SandboxViewController.h */,
 				6E9B69742379C19700F7032B /* SandboxViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
-				6ECEE61B238BFCD200384E9B /* AVOVoidDestination.h */,
-				6ECEE61C238BFCD200384E9B /* AVOVoidDestination.m */,
+				6ECEE61B238BFCD200384E9B /* AVODatascopeDestination.h */,
+				6ECEE61C238BFCD200384E9B /* AVODatascopeDestination.m */,
 				6E8042D02379A6AC00AB7C54 /* PlayerLogic */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6E8042C0237996BE00AB7C54 /* Sounds */,
@@ -433,10 +433,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-IosAnalyticsDebugger_Example/Pods-IosAnalyticsDebugger_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AvoStateOfTracking/AvoStateOfTracking.framework",
 				"${BUILT_PRODUCTS_DIR}/IosAnalyticsDebugger/IosAnalyticsDebugger.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoStateOfTracking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IosAnalyticsDebugger.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,7 +460,7 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				6E9B69752379C19700F7032B /* SandboxViewController.m in Sources */,
 				6E27B37723D5FB820014479C /* Avo.m in Sources */,
-				6ECEE61D238BFCD200384E9B /* AVOVoidDestination.m in Sources */,
+				6ECEE61D238BFCD200384E9B /* AVODatascopeDestination.m in Sources */,
 				6E6A270E2375BF300075B270 /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,7 +544,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -575,7 +577,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
