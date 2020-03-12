@@ -75,7 +75,7 @@
         [self.statusIcon setImage:[UIImage imageNamed:@"tick" inBundle:selfBundle compatibleWithTraitCollection:nil]];
         [self.dragHandle setImage:[UIImage imageNamed:@"drag_handle_grey" inBundle:selfBundle compatibleWithTraitCollection:nil]];
         [self.background setBackgroundColor:[UIColor whiteColor]];
-        [self.eventTimeLabel setTextColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1]];
+        [self.eventTimeLabel setTextColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1]]; // @"grey_text_color"
         [self.eventNameLabel setTextColor:[UIColor blackColor]];
     }
 }
