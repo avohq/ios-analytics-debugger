@@ -70,7 +70,8 @@
     if (hasError) {
         [self.bubble setImage:[UIImage imageNamed:@"avo_bubble_error" inBundle:selfBundle compatibleWithTraitCollection:nil]];
         [self.counterBackground setImage:[UIImage imageNamed:@"badge_white" inBundle:selfBundle compatibleWithTraitCollection:nil]];
-        [self.counter setTextColor:[UIColor colorNamed:@"error_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
+        [self.counter setTextColor:[UIColor colorWithRed:0.851 green:0.271 blue:0.325 alpha:1]];
+         //[UIColor colorNamed:@"error_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
     } else {
         [self.bubble setImage:[UIImage imageNamed:@"avo_bubble" inBundle:selfBundle compatibleWithTraitCollection:nil]];
         [self.counterBackground setImage:[UIImage imageNamed:@"badge_green" inBundle:selfBundle compatibleWithTraitCollection:nil]];
