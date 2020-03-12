@@ -33,12 +33,8 @@
 }
 
 - (void) showError: (NSAttributedString *) errorMessage {
-  //  NSBundle *selfBundle = [NSBundle bundleForClass:self.class];
-    
-    [self.propName setTextColor:[UIColor colorWithRed:0.851 green:0.271 blue:0.325 alpha:1]];
-     //[UIColor colorNamed:@"error_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
-    [self.propValue setTextColor:[UIColor colorWithRed:0.851 green:0.271 blue:0.325 alpha:1]];
-     //[UIColor colorNamed:@"error_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
+    [self.propName setTextColor:[UIColor colorWithRed:0.851 green:0.271 blue:0.325 alpha:1]]; // @"error_color"
+    [self.propValue setTextColor:[UIColor colorWithRed:0.851 green:0.271 blue:0.325 alpha:1]]; // @"error_color"
     
     [self.message setAttributedText:errorMessage];
 }
