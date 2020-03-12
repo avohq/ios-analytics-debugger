@@ -5,20 +5,23 @@
 //  Copyright © 2019. All rights reserved.
 //
 
-#import "AVOVoidDestination.h"
+#import "AVODatascopeDestination.h"
+#import <AvoInspector/AvoInspector.h>
 
-@implementation AVOVoidDestination
+@implementation AVODatascopeDestination
+
+AvoInspector * avoInspector;
 
 - (void)identify:(nonnull NSString *)userId {
     
 }
 
 - (void)logEvent:(nonnull NSString *)eventName withEventProperties:(nonnull NSDictionary *)eventProperties {
-    
+    [avoInspector trackSchemaFromEvent:eventName eventParams:eventProperties];
 }
 
 - (void)make:(AVOEnv)avoEnv {
-    
+    avoInspector = [[AvoInspector alloc] initWithApiKey:@"AKwAt6gmO8h4mBb2JcFn" isDev: avoEnv == AVOEnvDev];
 }
 
 - (void)setUserProperties:(nonnull NSString *)userId withUserProperties:(nonnull NSDictionary *)userProperties {

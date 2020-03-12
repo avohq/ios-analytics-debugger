@@ -14,6 +14,8 @@
 #import "DebuggerProp.h"
 #import "DebuggerPropError.h"
 #import <Foundation/Foundation.h>
+#import "DebuggerAnalytics.h"
+#import "DebuggerAnalyticsDestination.h"
 
 static UIView<DebuggerView> *debuggerView = nil;
 
@@ -36,6 +38,11 @@ NSString *currentSchemaId;
     }
     
     analyticsDebuggerEvents = [NSMutableArray new];
+    
+    NSString *version = [[[NSBundle bundleForClass:[AnalyticsDebugger class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [DebuggerAnalytics initAvoWithEnv:AVOEnvProd client:AVOEnumClientIosDebugger version:version
+              customNodeJsDestination:[DebuggerAnalyticsDestination new]];
+    
     return self;
 }
 
@@ -62,52 +69,7 @@ NSString *currentSchemaId;
         [debuggerView showEvent:[analyticsDebuggerEvents objectAtIndex:0]];
     }
     
-    [self trackDebuggerStarted];
-}
-
-- (void) trackDebuggerStarted {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                       initWithURL:[NSURL URLWithString:@"https://api.avo.app/c/v1/track"]];
-    [request setHTTPMethod:@"POST"];
-    
-    [self writeTrackingCallHeader:request];
-
-    [self writeTrackingCallBody:request];
-
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
-
-    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {}];
-
-    [postDataTask resume];
-}
-
-- (void) writeTrackingCallHeader:(NSMutableURLRequest *) request {
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-}
-
-- (void) writeTrackingCallBody:(NSMutableURLRequest *) request {
-    NSString *version = [[[NSBundle bundleForClass:[AnalyticsDebugger class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-       
-    NSMutableDictionary *eventProperties = [NSMutableDictionary new];
-    [eventProperties setValue:(currentSchemaId != nil ? currentSchemaId : @"n/a") forKey:@"Schema Id"];
-    [eventProperties setValue:@"Ios Debugger" forKey:@"Client"];
-    [eventProperties setValue:version forKey:@"Version"];
-       
-    UIDevice *device = [UIDevice currentDevice];
-    NSString  *deviceId = [[device identifierForVendor]UUIDString];
-       
-    NSMutableDictionary *body = [NSMutableDictionary new];
-    [body setValue:deviceId forKey:@"Device Id"];
-    [body setValue:@"Debugger Started" forKey:@"Event Name"];
-    [body setValue:eventProperties forKey:@"Event Properties"];
-       
-    NSError *error;
-    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:body
-                                                          options:NSJSONWritingPrettyPrinted
-                                                            error:&error];
-    [request setHTTPBody:bodyData];
+    [DebuggerAnalytics debuggerStartedWithFrameLocation:nil schemaId:currentSchemaId];
 }
 
 - (void) drugBar:(UIPanGestureRecognizer*)sender {
@@ -146,7 +108,7 @@ NSString *currentSchemaId;
         [debuggerView showEvent:event];
     }
     
-    [self trackDebuggerStarted];
+    [DebuggerAnalytics debuggerStartedWithFrameLocation:nil schemaId:currentSchemaId];
 }
 
 - (void) drugBubble:(UIPanGestureRecognizer*)sender {

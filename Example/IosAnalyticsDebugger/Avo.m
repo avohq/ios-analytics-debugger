@@ -2,6 +2,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Avo.h"
+
 #pragma GCC diagnostic ignored "-Wundeclared-selector"
 
 @interface NSArray (Map)
@@ -237,7 +238,7 @@ static NSObject * __DEBUGGER__ = nil;
   return @[];
 }
 
-+ (NSArray *)assertNonNullEnum:(NSString *)propertyId propertyName:(NSString *)propertyName value:(int)value
++ (NSArray *)assertNonNullEnum:(NSString *)propertyId propertyName:(NSString *)propertyName value:(unsigned long)value
 {
   if (value < 0) {
     return @[@{@"tag": @"expectedInitializedEnum", @"propertyId": propertyId,

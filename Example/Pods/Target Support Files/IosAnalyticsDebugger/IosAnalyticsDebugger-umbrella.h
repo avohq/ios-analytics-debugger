@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "DebuggerAnalytics.h"
+#import "DebuggerAnalyticsDestination.h"
 #import "AnalyticsDebugger.h"
 #import "EventsListScreenViewController.h"
 #import "EventTableViewCell.h"
