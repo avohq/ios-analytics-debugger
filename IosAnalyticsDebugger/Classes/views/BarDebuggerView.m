@@ -68,14 +68,14 @@
     if (hasError) {
         [self.statusIcon setImage:[UIImage imageNamed:@"white_warning" inBundle:selfBundle compatibleWithTraitCollection:nil]];
         [self.dragHandle setImage:[UIImage imageNamed:@"drag_handle" inBundle:selfBundle compatibleWithTraitCollection:nil]];
-        [self.background setBackgroundColor:[UIColor colorNamed:@"error_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
-        [self.eventTimeLabel setTextColor:[UIColor colorNamed:@"light_grey_text_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
+        [self.background setBackgroundColor:[UIColor colorWithRed:0.851 green:0.271 blue:0.325 alpha:1]]; //@"error_color"
+        [self.eventTimeLabel setTextColor:[UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1]]; //@"light_grey_text_color"
         [self.eventNameLabel setTextColor:[UIColor whiteColor]];
     } else {
         [self.statusIcon setImage:[UIImage imageNamed:@"tick" inBundle:selfBundle compatibleWithTraitCollection:nil]];
         [self.dragHandle setImage:[UIImage imageNamed:@"drag_handle_grey" inBundle:selfBundle compatibleWithTraitCollection:nil]];
         [self.background setBackgroundColor:[UIColor whiteColor]];
-        [self.eventTimeLabel setTextColor:[UIColor colorNamed:@"grey_text_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
+        [self.eventTimeLabel setTextColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1]]; // @"grey_text_color"
         [self.eventNameLabel setTextColor:[UIColor blackColor]];
     }
 }

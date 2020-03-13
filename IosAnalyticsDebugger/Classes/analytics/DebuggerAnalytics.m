@@ -147,7 +147,7 @@ static BOOL __STRICT__ = YES;
 static NSObject * __DEBUGGER__ = nil;
 
 + (BOOL)mobileDebuggerEnabled {
-    return [__DEBUGGER__ performSelector:@selector(isEnabled)];
+    return (BOOL)[__DEBUGGER__ performSelector:@selector(isEnabled)];
 }
 
 + (void)mobileDebuggerPostEvent: (NSString *)name withTimestamp:(NSNumber *)timestamp withId:(NSString *)eventId

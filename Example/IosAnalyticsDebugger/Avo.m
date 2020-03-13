@@ -148,7 +148,7 @@ static BOOL __STRICT__ = YES;
 static NSObject * __DEBUGGER__ = nil;
 
 + (BOOL)mobileDebuggerEnabled {
-    return [__DEBUGGER__ performSelector:@selector(isEnabled)];
+    return [__DEBUGGER__ performSelector:@selector(isEnabled) ];
 }
 
 + (void)setSchemaIdInDebugger: (NSString *)schemaId {

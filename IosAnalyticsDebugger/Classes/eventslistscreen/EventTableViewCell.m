@@ -86,7 +86,7 @@
 - (void) showError:(BOOL) isError {
     NSBundle *selfBundle = [NSBundle bundleForClass:self.class];
     if (isError) {
-        [self.eventName setTextColor:[UIColor colorNamed:@"error_color" inBundle:selfBundle compatibleWithTraitCollection:nil]];
+        [self.eventName setTextColor:[UIColor colorWithRed:0.851 green:0.271 blue:0.325 alpha:1]]; //@"error_color"
         [self.statusIcon setImage:[UIImage imageNamed:@"red_warning" inBundle:selfBundle compatibleWithTraitCollection:nil]];
     } else {
         [self.eventName setTextColor:[UIColor blackColor]];
