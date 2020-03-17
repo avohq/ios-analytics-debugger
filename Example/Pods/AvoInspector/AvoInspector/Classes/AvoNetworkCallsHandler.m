@@ -14,7 +14,7 @@
 @interface AvoNetworkCallsHandler()
 
 @property (readwrite, nonatomic) NSString *apiKey;
-@property (readwrite, nonatomic) Boolean isDev;
+@property (readwrite, nonatomic) int env;
 @property (readwrite, nonatomic) NSString *appName;
 @property (readwrite, nonatomic) NSString *appVersion;
 @property (readwrite, nonatomic) NSString *libVersion;
@@ -25,7 +25,7 @@
 
 @implementation AvoNetworkCallsHandler
 
-- (instancetype) initWithApiKey: (NSString *) apiKey appName: (NSString *)appName appVersion: (NSString *) appVersion libVersion: (NSString *) libVersion isDev: (Boolean) isDev {
+- (instancetype) initWithApiKey: (NSString *) apiKey appName: (NSString *)appName appVersion: (NSString *) appVersion libVersion: (NSString *) libVersion env: (int) env {
     self = [super init];
     if (self) {
         self.appVersion = appVersion;
@@ -33,7 +33,7 @@
         self.appName = appName;
         self.apiKey = apiKey;
         self.samplingRate = 1.0;
-        self.isDev = isDev;
+        self.env = env;
     }
     return self;
 }
@@ -113,13 +113,33 @@
     [body setValue:self.appName forKey:@"appName"];
     [body setValue:self.appVersion forKey:@"appVersion"];
     [body setValue:self.libVersion forKey:@"libVersion"];
-    [body setValue:self.isDev ? @"dev" : @"prod" forKey:@"env"];
+    [body setValue:[AvoNetworkCallsHandler formatTypeToString:self.env] forKey:@"env"];
     [body setValue:@"ios" forKey:@"libPlatform"];
     [body setValue:[[NSUUID UUID] UUIDString] forKey:@"messageId"];
     [body setValue:[[AvoInstallationId new] getInstallationId] forKey:@"trackingId"];
     [body setValue:[AvoUtils currentTimeAsISO8601UTCString] forKey:@"createdAt"];
 
     return body;
+}
+
++ (NSString*)formatTypeToString:(int) formatType {
+    NSString *result = nil;
+
+    switch(formatType) {
+        case 0:
+            result = @"prod";
+            break;
+        case 1:
+            result = @"dev";
+            break;
+        case 2:
+            result = @"staging";
+            break;
+        default:
+            [NSException raise:NSGenericException format:@"Unexpected FormatType."];
+    }
+
+    return result;
 }
 
 - (void) callInspectorWithBatchBody: (NSArray *) batchBody completionHandler:(void (^)(NSError * _Nullable error))completionHandler {
@@ -135,11 +155,20 @@
     }
     
     if ([AvoInspector isLogging]) {
-        for(NSDictionary *batchItem in batchBody) {
-            NSString * eventName = [batchItem objectForKey:@"eventName"];
-            NSString * eventProps = [batchItem objectForKey:@"eventProperties"];
+        for (NSDictionary *batchItem in batchBody) {
+            NSString * type = [batchItem objectForKey:@"type"];
             
-            NSLog(@"Avo State Of Tracking: Sending event %@ with schema {\n%@}\n\n", eventName, [eventProps description]);
+            if ([type  isEqual:@"sessionSarted"]) {
+                NSLog(@"Avo Inspector: Sending session started event");
+            } else if ([type  isEqual:@"event"]) {
+                NSString * eventName = [batchItem objectForKey:@"eventName"];
+                NSString * eventProps = [batchItem objectForKey:@"eventProperties"];
+
+                NSLog(@"Avo Inspector: Sending event %@ with schema {\n%@}\n\n", eventName, [eventProps description]);
+            } else {
+                NSLog(@"Avo Inspector: Error! Unknown event type.");
+            }
+            
         }
     }
     
@@ -175,7 +204,7 @@
                 weakSelf.samplingRate = [rate doubleValue];
             }
         } else if ([AvoInspector isLogging]) {
-            NSLog(@"Avo State Of Tracking: Failed sending events. Will retry later.");
+            NSLog(@"Avo Inspector: Failed sending events. Will retry later.");
         }
         
         completionHandler(error);

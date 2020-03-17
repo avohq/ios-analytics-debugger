@@ -4,13 +4,12 @@
 [![License](https://img.shields.io/cocoapods/l/AvoInspector.svg?style=flat)](https://cocoapods.org/pods/AvoInspector)
 [![Platform](https://img.shields.io/cocoapods/p/AvoInspector.svg?style=flat)](https://cocoapods.org/pods/AvoInspector)
 
-## Example
+# Avo documentation
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+This is a quick start guide. 
+For more information about the Datascope project please read [Avo documentation](https://www.avo.app/docs/datascope/avo-inspector/ios).
 
-## Requirements
-
-## Installation
+# Installation
 
 AvoInspector is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -19,34 +18,35 @@ it, simply add the following line to your Podfile:
 pod 'AvoInspector'
 ```
 
-# Avo documentation
+The latest version can be found in GitHub releases tab.
 
-This is a quick start guide. 
-For more information about the Datascope project please read [Avo documentation](https://www.avo.app/docs/datascope/avo-inspector/ios).
-
-# Initializing
+# Initialization
 
 Obtain the API key at [Avo.app](https://www.avo.app/welcome) 
 
 Obj-C
 
-    AvoInspector *avoInspector = [[AvoInspector alloc] initWithApiKey:@"apiKey" isDev: devFlag];
-        
+```objectivec
+AvoInspector *avoInspector = [[AvoInspector alloc] initWithApiKey:@"apiKey" end: AvoInspectorEnvDev];
+```       
 Swift
 
-    let avoInspector = AvoInspector(apiKey: "apiKey", isDev: devFlag)
-    
+```swift
+let avoInspector = AvoInspector(apiKey: "apiKey", env: AvoInspectorEnv.dev)
+```
 # Enabling logs
 
 Logs are enabled by default in the dev mode and disabled in prod mode based on the init flag.
 
 Obj-C
+```objectivec
+[AvoInspector setLogging:YES];
+```
 
-    [AvoInspector setLogging:YES];
-        
 Swift
-
-    AvoInspector.setLogging(true)
+```swift
+AvoInspector.setLogging(true)
+```
 
 # Sending event schemas
 
@@ -59,35 +59,39 @@ This methods gets actual tracking event parameters, extracts schema automaticall
 It is the easiest way to use the library, just call this method at the same place you call your analytics tools' track methods with the same parameters.
 
 Obj-C
+```objectivec
+[avoInspector trackSchemaFromEvent:@"Event Name" eventParams:@{@"id": @"sdf-334fsg-334f", @"number": @41}];
+```
 
-    [avoInspector trackSchemaFromEvent:@"Event Name" eventParams:@{@"id": @"sdf-334fsg-334f", @"number": @41}];
-    
 Swift
-    
-    avoInspector.trackSchema(fromEvent: "Event Name", eventParams: ["id": "sdf-334fsg-334f", "number": 41])
-    
+```swift
+avoInspector.trackSchema(fromEvent: "Event Name", eventParams: ["id": "sdf-334fsg-334f", "number": 41])
+```
 ### 2.
 
 If you prefer to extract data schema manually you would use this method.
 
 Obj-C
+```objectivec
+[avoInspector trackSchema:@"Event Name" eventSchema:@{@"id": [[AvoString alloc] init], @"number": [[AvoInt alloc] init]}];
+```
 
-    [avoSot trackSchema:@"Event Name" eventSchema:@{@"id": [[AvoString alloc] init], @"number": [[AvoInt alloc] init]}];
-    
 Swift
-
-    avoSot.trackSchema("Event Name", eventSchema: ["id": AvoString(), "number": AvoInt()])
-
+```swift
+avoInspector.trackSchema("Event Name", eventSchema: ["id": AvoString(), "number": AvoInt()])
+```
 # Extract event schema manually
 
 Obj-C
+```objectivec
+NSDictionary * schema = [avoInspector extractSchema:@{@"id": @"sdf-334fsg-334f", @"number": @41}];
+```
 
-    NSDictionary * schema = [avoSot extractSchema:@{@"id": @"sdf-334fsg-334f", @"number": @41}];
-    
 Swift
-    
-    let schema = avoSot.extractSchema(["id": "sdf-334fsg-334f", "number": 41])
-    
+```swift
+let schema = avoInspector.extractSchema(["id": "sdf-334fsg-334f", "number": 41])
+```
+
 # Batching control
 
 In order to ensure our SDK doesn't have a large impact on performance or battery life it supports event schemas batching.
@@ -96,14 +100,21 @@ Default batch size is 30 and default batch flust timeout is 30 seconds.
 In debug mode default batch size is 1, i.e. every event schema is sent to the server as soon as it is reported.
 
 Obj-C
+```objectivec
+[AvoInspector setBatchSize:15];
+[AvoInspector setBatchFlustSeconds:10];
+```
 
-    [AvoInspector setBatchSize:15];
-    [AvoInspector setBatchFlustSeconds:10];
-    
 Swift
+```swift
+AvoInspector.setBatchSize(15)
+AvoInspector.setBatchFlustSeconds(10)
+```
     
-    AvoInspector.setBatchSize(15)
-    AvoInspector.setBatchFlustSeconds(10)
+# Example App
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
 
 ## Author
 

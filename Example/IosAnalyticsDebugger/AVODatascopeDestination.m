@@ -21,7 +21,7 @@ AvoInspector * avoInspector;
 }
 
 - (void)make:(AVOEnv)avoEnv {
-    avoInspector = [[AvoInspector alloc] initWithApiKey:@"AKwAt6gmO8h4mBb2JcFn" isDev: avoEnv == AVOEnvDev];
+    avoInspector = [[AvoInspector alloc] initWithApiKey:@"AKwAt6gmO8h4mBb2JcFn" env:AvoInspectorEnvDev];
 }
 
 - (void)setUserProperties:(nonnull NSString *)userId withUserProperties:(nonnull NSDictionary *)userProperties {
