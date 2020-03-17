@@ -10,7 +10,7 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - IosAnalyticsDebugger (1.1.1)
+  - IosAnalyticsDebugger (1.1.2)
   - Specta (1.0.7)
 
 DEPENDENCIES:
@@ -38,7 +38,7 @@ SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   "Expecta+Snapshots": dcff217eef506dabd6dfdc7864ea2da321fafbb8
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  IosAnalyticsDebugger: c2ca9852d87d64f986b043535b17d648ff0824ae
+  IosAnalyticsDebugger: 3fb5addd0469438a1a117b4c599cd59b2145d6e8
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: 5d0f0ce5829bcbc863310a7ddd4fe566da2a18cd
