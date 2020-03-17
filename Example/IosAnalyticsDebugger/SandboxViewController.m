@@ -29,7 +29,7 @@
     BOOL isEnabled = [[AVOAppDelegate debugger] performSelector:@selector(isEnabled)];
     
     if (isEnabled) {
-        NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"Event Id", @"value": @"YES"},
+        NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"Event Id", @"value": @"Commented very long description of value of this particular event that does not fite single line and expends to multiple lines because of its containing number of characters"},
                                                  @{@"id" : @"id321343", @"name": @"Event Name", @"value": @"Commented"}];
         
         NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"User Name", @"value": @"Vasily"},
@@ -43,10 +43,10 @@
 }
 
 - (IBAction)onSendEventClick:(id)sender {
-    NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"Event Id", @"value": @"4354565"},
-                                             @{@"id" : @"id321343", @"name": @"Event Name", @"value": @"Commented"}];
+    NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"Event Id", @"value": @"{ some: thing, \n other : thing }"},
+                                             @{@"id" : @"id321343", @"name": @"Event Name", @"value": @"Commented very long description of value of this particular event that does not fite single line and expends to multiple lines because of its containing number of characters"}];
     
-    NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"User Name", @"value": @"Vasily"},
+    NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"User Name User Name User Name User Name User Name User Name", @"value": @"Vasily"},
                                             @{@"id" : @"id2rert", @"name": @"User Id", @"value": @"0"}];
     
     [[AVOAppDelegate debugger] publishEvent:@"Correct event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": @[], @"eventProps": eventProps, @"userProps": userProps}];
