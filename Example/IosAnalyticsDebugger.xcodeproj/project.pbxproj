@@ -307,6 +307,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Alexey Verein";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = G7H6Q48U3Z;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -589,6 +592,7 @@
 			baseConfigurationReference = 644F0A63E13025B99B9066B5 /* Pods-IosAnalyticsDebugger_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G7H6Q48U3Z;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IosAnalyticsDebugger/IosAnalyticsDebugger-Prefix.pch";
 				INFOPLIST_FILE = "IosAnalyticsDebugger/IosAnalyticsDebugger-Info.plist";
@@ -605,6 +609,7 @@
 			baseConfigurationReference = D6C3E74771E2AFCA361D1477 /* Pods-IosAnalyticsDebugger_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G7H6Q48U3Z;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IosAnalyticsDebugger/IosAnalyticsDebugger-Prefix.pch";
 				INFOPLIST_FILE = "IosAnalyticsDebugger/IosAnalyticsDebugger-Info.plist";
