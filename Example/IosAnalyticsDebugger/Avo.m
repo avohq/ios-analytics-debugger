@@ -346,8 +346,6 @@ static id<AVOCustomDestination> custom = nil;
    
    NSDictionary *customEventProperties = @{};
    
-   NSDictionary *customUserProperties = @{};
-   
    [custom logEvent:@"App Opened" withEventProperties:customEventProperties];
  }
 
@@ -403,8 +401,6 @@ static id<AVOCustomDestination> custom = nil;
     customEventProperties[@"Current Song Name"] = currentSongName;
   }
   
-  NSDictionary *customUserProperties = @{};
-  
   [custom logEvent:@"Play" withEventProperties:customEventProperties];
 }
 
@@ -459,8 +455,6 @@ static id<AVOCustomDestination> custom = nil;
   if (currentSongName != nil) {
     customEventProperties[@"Current Song Name"] = currentSongName;
   }
-  
-  NSDictionary *customUserProperties = @{};
   
   [custom logEvent:@"Pause" withEventProperties:customEventProperties];
 }
@@ -527,8 +521,6 @@ static id<AVOCustomDestination> custom = nil;
     customEventProperties[@"Upcoming Track Name"] = upcomingTrackName;
   }
   
-  NSDictionary *customUserProperties = @{};
-  
   [custom logEvent:@"Play Next Track" withEventProperties:customEventProperties];
 }
 
@@ -593,8 +585,6 @@ static id<AVOCustomDestination> custom = nil;
   if (upcomingTrackName != nil) {
     customEventProperties[@"Upcoming Track Name"] = upcomingTrackName;
   }
-  
-  NSDictionary *customUserProperties = @{};
   
   [custom logEvent:@"Play Previous Track" withEventProperties:customEventProperties];
 }
