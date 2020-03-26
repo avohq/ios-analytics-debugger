@@ -33,6 +33,7 @@
 @property (readwrite, nonatomic) NSNotificationCenter *notificationCenter;
 
 @property (readwrite, nonatomic) AvoInspectorEnv env;
+@property (readwrite, nonatomic) AnalyticsDebugger * debugger;
 
 @end
 
@@ -66,10 +67,38 @@ static int batchFlushSTime = 30;
     batchFlushSTime = newBatchFlushSeconds;
 }
 
+- (AnalyticsDebugger *) getVisualInspector {
+    return self.debugger;
+}
+
+- (void) showVisualInspector: (AvoVisualInspectorType) type {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+        switch (type) {
+            case Bar:
+                [self.debugger showBarDebugger];
+                break;
+            case Bubble:
+                [self.debugger showBubbleDebugger];
+                break;
+            default:
+                break;
+        }
+    });
+}
+
+- (void) hideVisualInspector {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+        [self.debugger hideDebugger];
+    });
+}
+
 -(instancetype) initWithApiKey: (NSString *) apiKey env: (AvoInspectorEnv) env {
     self = [super init];
     if (self) {
         self.env = env;
+        self.debugger = [AnalyticsDebugger new];
         
         if (env == AvoInspectorEnvDev) {
             [AvoInspector setBatchFlushSeconds:1];
@@ -77,6 +106,10 @@ static int batchFlushSTime = 30;
         } else {
             [AvoInspector setBatchFlushSeconds:30];
             [AvoInspector setLogging:NO];
+        }
+
+        if (env != AvoInspectorEnvProd) {
+            [self showVisualInspector:Bar];
         }
         
         self.appName = [[NSBundle mainBundle] infoDictionary][(NSString *)kCFBundleIdentifierKey];
@@ -126,6 +159,8 @@ static int batchFlushSTime = 30;
         NSLog(@"Avo Inspector: Supplied event %@ with params %@", eventName, [params description]);
     }
     
+    [self showEventInVisualInspector:eventName props:params];
+    
     NSDictionary * schema = [self extractSchema:params];
     
     [self trackSchema:eventName eventSchema:schema];
@@ -157,6 +192,36 @@ static int batchFlushSTime = 30;
     [self.sessionTracker startOrProlongSession:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]];
     
     [self.avoBatcher handleTrackSchema:eventName schema:schema];
+    
+    [self showSchemaInVisualInspector:eventName schema:schema];
+}
+
+- (void)showEventInVisualInspector:(NSString *) eventName props:(NSDictionary<NSString *, id> * _Nonnull)eventProps {
+    if (self.debugger != nil && (self.env != AvoInspectorEnvProd || [self.debugger isEnabled])) {
+        NSMutableArray * props = [NSMutableArray new];
+        
+        for(NSString *key in [eventProps allKeys]) {
+            id value = [eventProps objectForKey:key];
+            [props addObject:[[DebuggerProp alloc] initWithId:key withName:key withValue:[value description]]];
+        }
+        
+        [self.debugger publishEvent:[NSString stringWithFormat:@"Event: %@", eventName] withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+                withProperties:props withErrors:[NSMutableArray new]];
+    }
+}
+
+- (void)showSchemaInVisualInspector:(NSString *) eventName schema:(NSDictionary<NSString *,AvoEventSchemaType *> * _Nonnull)schema {
+    if (self.debugger != nil && (self.env != AvoInspectorEnvProd || [self.debugger isEnabled])) {
+        NSMutableArray * props = [NSMutableArray new];
+        
+        for(NSString *key in [schema allKeys]) {
+            NSString *value = [[schema objectForKey:key] name];
+            [props addObject:[[DebuggerProp alloc] initWithId:key withName:key withValue:value]];
+        }
+        
+        [self.debugger publishEvent:[NSString stringWithFormat:@"Schema: %@", eventName] withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+                withProperties:props withErrors:[NSMutableArray new]];
+    }
 }
 
 -(NSDictionary<NSString *, AvoEventSchemaType *> *) extractSchema:(NSDictionary<NSString *, id> *) eventParams {

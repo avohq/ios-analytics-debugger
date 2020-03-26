@@ -40,7 +40,7 @@ NSString *currentSchemaId;
     analyticsDebuggerEvents = [NSMutableArray new];
     
     NSString *version = [[[NSBundle bundleForClass:[AnalyticsDebugger class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    [DebuggerAnalytics initAvoWithEnv:AVOEnvProd client:AVOEnumClientIosDebugger version:version
+    [DebuggerAnalytics initAvoWithEnv:AVOEnvProd version:version
               customNodeJsDestination:[DebuggerAnalyticsDestination new]];
     
     return self;

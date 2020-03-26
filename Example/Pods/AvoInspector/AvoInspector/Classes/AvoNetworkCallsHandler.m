@@ -122,26 +122,6 @@
     return body;
 }
 
-+ (NSString*)formatTypeToString:(int) formatType {
-    NSString *result = nil;
-
-    switch(formatType) {
-        case 0:
-            result = @"prod";
-            break;
-        case 1:
-            result = @"dev";
-            break;
-        case 2:
-            result = @"staging";
-            break;
-        default:
-            [NSException raise:NSGenericException format:@"Unexpected FormatType."];
-    }
-
-    return result;
-}
-
 - (void) callInspectorWithBatchBody: (NSArray *) batchBody completionHandler:(void (^)(NSError * _Nullable error))completionHandler {
     if (batchBody == nil) {
         return;
@@ -216,6 +196,26 @@
 - (void) writeCallHeader:(NSMutableURLRequest *) request {
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+}
+
++ (NSString*)formatTypeToString:(int) formatType {
+    NSString *result = nil;
+
+    switch(formatType) {
+        case 0:
+            result = @"prod";
+            break;
+        case 1:
+            result = @"dev";
+            break;
+        case 2:
+            result = @"staging";
+            break;
+        default:
+            [NSException raise:NSGenericException format:@"Unexpected FormatType."];
+    }
+
+    return result;
 }
 
 @end
