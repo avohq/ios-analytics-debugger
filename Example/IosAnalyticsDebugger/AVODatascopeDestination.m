@@ -20,7 +20,7 @@ AvoInspector * avoInspector;
     [avoInspector trackSchemaFromEvent:eventName eventParams:eventProperties];
 }
 
-- (void)make:(DebuggerAnalyticsAVOEnv)avoEnv {
+- (void)make:(AVOEnv)avoEnv {
     avoInspector = [[AvoInspector alloc] initWithApiKey:@"AKwAt6gmO8h4mBb2JcFn" env:AvoInspectorEnvDev];
 }
 

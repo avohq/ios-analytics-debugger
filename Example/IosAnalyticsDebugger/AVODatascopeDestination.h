@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AVODatascopeDestination : NSObject <DebuggerAnalyticsCustomDestination>
+@interface AVODatascopeDestination : NSObject <AVOCustomDestination>
 
 @end
 
