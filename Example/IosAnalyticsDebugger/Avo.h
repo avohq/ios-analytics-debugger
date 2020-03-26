@@ -4,14 +4,14 @@
 #ifndef Avo_h
 #define Avo_h
 
-typedef NS_ENUM(NSInteger, AVOEnv) {
+typedef NS_ENUM(NSInteger, DebuggerAnalyticsAVOEnv) {
   AVOEnvProd = 0,
   AVOEnvDev = 1,
 };
 
-@protocol AVOCustomDestination
+@protocol DebuggerAnalyticsCustomDestination
 
-- (void)make:(AVOEnv)avoEnv;
+- (void)make:(DebuggerAnalyticsAVOEnv)avoEnv;
 
 - (void)logEvent:(nonnull NSString*)eventName withEventProperties:(nonnull NSDictionary*)eventProperties;
 
@@ -25,19 +25,19 @@ typedef NS_ENUM(NSInteger, AVOEnv) {
 
 @interface Avo : NSObject
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination;
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination;
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination
   strict:(BOOL)strict;
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination
   debugger:(nonnull NSObject *)debugger;
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination
   strict:(BOOL)strict
   debugger:(nonnull NSObject *)debugger;
 

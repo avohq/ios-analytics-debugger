@@ -6,9 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <IosAnalyticsDebugger/AnalyticsDebugger.h>
 #import "AvoEventSchemaType.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSUInteger, AvoVisualInspectorType) {
+    Bar = 0,
+    Bubble = 1
+};
 
 @protocol Inspector <NSObject>
 
@@ -25,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (int) getBatchFlushSeconds;
 + (void) setBatchFlushSeconds: (int) newBatchFlushSeconds;
+
+- (void) showVisualInspector: (AvoVisualInspectorType) type;
+- (void) hideVisualInspector;
+
+- (AnalyticsDebugger *) getVisualInspector;
 
 @end
 

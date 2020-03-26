@@ -80,7 +80,7 @@ Swift
 ```swift
 avoInspector.trackSchema("Event Name", eventSchema: ["id": AvoString(), "number": AvoInt()])
 ```
-# Extract event schema manually
+# Extracting event schema manually
 
 Obj-C
 ```objectivec
@@ -90,6 +90,48 @@ NSDictionary * schema = [avoInspector extractSchema:@{@"id": @"sdf-334fsg-334f",
 Swift
 ```swift
 let schema = avoInspector.extractSchema(["id": "sdf-334fsg-334f", "number": 41])
+```
+
+# Using the visual inspector
+
+Visual inspector is enabled in development and staging environments by default.
+
+## Show
+
+Obj-C
+```objectivec
+[avoInspector showVisualInspector:Bar]; // or Bubble
+```
+
+Swift
+```swift
+avoInspector.show(AvoVisualInspectorType.Bar) // or AvoVisualInspectorType.Bubble
+```
+
+## Hide
+
+Obj-C
+```objectivec
+[avoInspector hideVisualInspector];
+```
+
+Swift
+```swift
+avoInspector.hideVisualInspector()
+```
+
+## Advanced usage
+
+You can get an instance of `AnalyticsDebugger` with the following method. See [GitHub repo](https://github.com/avohq/ios-analytics-debugger)
+
+Obj-C
+```objectivec
+[avoInspector getVisualInspector];
+```
+
+Swift
+```swift
+avoInspector.getVisualInspector()
 ```
 
 # Batching control

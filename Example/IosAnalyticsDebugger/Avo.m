@@ -142,7 +142,7 @@ NSString * toISO8601UTC(NSDate *date) {
 
 @implementation Avo
 
-static AVOEnv __ENV__ = -1;
+static DebuggerAnalyticsAVOEnv __ENV__ = -1;
 static BOOL __STRICT__ = YES;
 
 static NSObject * __DEBUGGER__ = nil;
@@ -252,10 +252,10 @@ static NSObject * __DEBUGGER__ = nil;
   NSLog(@"[avo] Event Sent: %@ Event Props: %@ User Props: %@", eventName, eventProperties, userProperties);
 }
 
-static id<AVOCustomDestination> custom = nil;
+static id<DebuggerAnalyticsCustomDestination> custom = nil;
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination
   strict:(BOOL)strict
   debugger:(nonnull NSObject *)debugger
 {
@@ -265,8 +265,8 @@ static id<AVOCustomDestination> custom = nil;
   [self initAvoWithEnv:env customDestination:customDestination strict:strict];
 }
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination
   debugger:(nonnull NSObject *)debugger
 {
   __DEBUGGER__ = debugger;
@@ -276,14 +276,14 @@ static id<AVOCustomDestination> custom = nil;
   [self initAvoWithEnv:env customDestination:customDestination strict:strict];
 }
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination
 {
   [self initAvoWithEnv:env customDestination:customDestination strict:YES];
 }
 
-+ (void)initAvoWithEnv:(AVOEnv)env
-  customDestination:(nonnull id<AVOCustomDestination>)customDestination
++ (void)initAvoWithEnv:(DebuggerAnalyticsAVOEnv)env
+  customDestination:(nonnull id<DebuggerAnalyticsCustomDestination>)customDestination
   strict:(BOOL)strict
 {
   __ENV__ = env;

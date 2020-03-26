@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) NSString *appName;
 @property (readonly, nonatomic) NSString *appVersion;
 @property (readonly, nonatomic) NSString *libVersion;
-@property (readonly, nonatomic) Boolean isDev;
 
 - (instancetype) initWithApiKey: (NSString *) apiKey appName: (NSString *)appName appVersion: (NSString *) appVersion libVersion: (NSString *) libVersion env: (int) env;
 
