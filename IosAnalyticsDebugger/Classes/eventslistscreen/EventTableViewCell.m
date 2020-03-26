@@ -102,7 +102,7 @@
         } else {
             [self.eventName setTextColor:[UIColor blackColor]];
         }
-        [self.statusIcon setImage:[UIImage imageNamed:@"tick" inBundle:resBundle compatibleWithTraitCollection:nil]];
+        [self.statusIcon setImage:[UIImage imageNamed:@"avo_debugger_tick" inBundle:resBundle compatibleWithTraitCollection:nil]];
     }
 }
 
