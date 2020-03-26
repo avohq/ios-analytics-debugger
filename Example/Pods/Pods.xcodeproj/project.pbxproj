@@ -944,10 +944,10 @@
 			isa = PBXGroup;
 			children = (
 				EAB437C243BD4239CF5D2875BB437302 /* EventsListScreenViewController.h */,
-				D788EA613B6C9C9EEE8202734E422990 /* EventsListScreenViewController.m */,
 				081E12A9735FB46D49AB4B889ABE6722 /* EventsListScreenViewController.xib */,
 				C16EB37F5672B338040C369541F550A8 /* EventTableViewCell.h */,
 				03817E9A6B92E8910E69BB2B7CD00860 /* EventTableViewCell.m */,
+				D788EA613B6C9C9EEE8202734E422990 /* EventsListScreenViewController.m */,
 				CB4B3972B411A26706D503DCF0B9A756 /* EventTableViewCell.xib */,
 				7EE7C7408FFC50C2E9734935707761DE /* secondaryrows */,
 			);
