@@ -20,12 +20,10 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'IosAnalyticsDebugger/Classes/**/*'
-  
-  s.resources = "IosAnalyticsDebugger/Assets/*.xcassets"
+  s.source_files = 'IosAnalyticsDebugger/Classes/**/*.{h,m,xib}'
   
   s.resource_bundles = {
-     'IosAnalyticsDebugger' => ['IosAnalyticsDebugger/Assets/*.png']
+     'IosAnalyticsDebugger' => ['IosAnalyticsDebugger/Assets/*.xcassets']
   }
 
 end

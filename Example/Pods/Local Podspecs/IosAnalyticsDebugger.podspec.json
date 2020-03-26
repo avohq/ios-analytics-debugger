@@ -18,10 +18,10 @@
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "IosAnalyticsDebugger/Classes/**/*",
+  "source_files": "IosAnalyticsDebugger/Classes/**/*.{h,m,xib}",
   "resource_bundles": {
     "IosAnalyticsDebugger": [
-      "IosAnalyticsDebugger/Assets/*.png"
+      "IosAnalyticsDebugger/Assets/*.xcassets"
     ]
   }
 }
