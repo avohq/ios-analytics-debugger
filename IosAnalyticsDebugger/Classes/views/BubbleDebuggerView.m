@@ -50,6 +50,8 @@
     view.frame = self.bounds;
     [self addSubview:view];
     [self showEventCount:0];
+    
+    [self setError:NO];
 }
 
 - (void) showEvent:(DebuggerEventItem *)event {

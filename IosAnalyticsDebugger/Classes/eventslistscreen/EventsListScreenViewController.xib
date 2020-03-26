@@ -37,7 +37,7 @@
                             </constraints>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avo_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ug0-cr-KSC">
-                            <rect key="frame" x="153" y="16" width="108" height="16"/>
+                            <rect key="frame" x="153" y="12" width="108" height="24"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRV-Hh-hdL" userLabel="botline">
                             <rect key="frame" x="0.0" y="47" width="414" height="1"/>
@@ -56,14 +56,14 @@
                         <constraint firstAttribute="trailing" secondItem="ug0-cr-KSC" secondAttribute="trailing" constant="153" id="c5g-Sr-kRB"/>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="trailing" secondItem="HRV-Hh-hdL" secondAttribute="trailing" id="hnV-7T-TwO"/>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="HRV-Hh-hdL" secondAttribute="bottom" id="llU-Dc-TDF"/>
-                        <constraint firstItem="ug0-cr-KSC" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="top" constant="16" id="nb5-t3-n1A"/>
+                        <constraint firstItem="ug0-cr-KSC" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="top" constant="12" id="nb5-t3-n1A"/>
                         <constraint firstAttribute="height" constant="48" id="ny0-0a-Mmn"/>
-                        <constraint firstAttribute="bottom" secondItem="ug0-cr-KSC" secondAttribute="bottom" constant="16" id="tLh-kK-Hzr"/>
+                        <constraint firstAttribute="bottom" secondItem="ug0-cr-KSC" secondAttribute="bottom" constant="12" id="tLh-kK-Hzr"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="IKD-QF-tZ2"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="x1X-Iu-XFf" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="bottom" id="7aC-MZ-wGE"/>
                 <constraint firstItem="6G5-ul-omW" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="L4I-t2-5mM"/>
