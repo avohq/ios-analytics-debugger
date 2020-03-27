@@ -28,6 +28,8 @@ Obj-C
 Swift
 
     let debugger = AnalyticsDebugger()
+    
+Remeber to keep a reference to the `AnalyticsDebugger` instance somewhere, for example in your app delegate. Otherwise it will become unresponsive to touches.
 
 # Show the debugger
 
