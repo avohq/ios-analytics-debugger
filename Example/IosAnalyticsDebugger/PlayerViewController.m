@@ -48,6 +48,8 @@
                                              selector: @selector(handleEnteredBackground:)
                                                  name: UIApplicationDidEnterBackgroundNotification
                                                object: nil];
+    
+     [[AVOAppDelegate debugger] showBubbleDebugger];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
