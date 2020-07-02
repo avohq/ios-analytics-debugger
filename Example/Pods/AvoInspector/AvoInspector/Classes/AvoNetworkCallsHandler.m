@@ -113,6 +113,8 @@
     [body setValue:self.appName forKey:@"appName"];
     [body setValue:self.appVersion forKey:@"appVersion"];
     [body setValue:self.libVersion forKey:@"libVersion"];
+    [body setValue:@(self.samplingRate) forKey:@"samplingRate"];
+    [body setValue:AvoSessionTracker.sessionId forKey:@"sessionId"];
     [body setValue:[AvoNetworkCallsHandler formatTypeToString:self.env] forKey:@"env"];
     [body setValue:@"ios" forKey:@"libPlatform"];
     [body setValue:[[NSUUID UUID] UUIDString] forKey:@"messageId"];
@@ -129,7 +131,7 @@
     
     if (drand48() > self.samplingRate) {
          if ([AvoInspector isLogging]) {
-             NSLog(@"Last event schema dropped due to sampling rate");
+             NSLog(@"Avo Inspector: Last event schema dropped due to sampling rate");
          }
          return;
     }
@@ -138,13 +140,13 @@
         for (NSDictionary *batchItem in batchBody) {
             NSString * type = [batchItem objectForKey:@"type"];
             
-            if ([type  isEqual:@"sessionSarted"]) {
+            if ([type  isEqual:@"sessionStarted"]) {
                 NSLog(@"Avo Inspector: Sending session started event");
             } else if ([type  isEqual:@"event"]) {
                 NSString * eventName = [batchItem objectForKey:@"eventName"];
                 NSString * eventProps = [batchItem objectForKey:@"eventProperties"];
 
-                NSLog(@"Avo Inspector: Sending event %@ with schema {\n%@}\n\n", eventName, [eventProps description]);
+                NSLog(@"Avo Inspector: Sending event %@ with schema {\n%@\n}\n", eventName, [eventProps description]);
             } else {
                 NSLog(@"Avo Inspector: Error! Unknown event type.");
             }
@@ -157,7 +159,7 @@
                                                           options:NSJSONWritingPrettyPrinted
                                                             error:&error];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.avo.app/datascope/v0/track"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.avo.app/inspector/v1/track"]];
     [request setHTTPMethod:@"POST"];
 
     [self writeCallHeader:request];

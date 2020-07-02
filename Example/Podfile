@@ -5,7 +5,7 @@ platform :ios, '10.0'
 target 'IosAnalyticsDebugger_Example' do
   pod 'IosAnalyticsDebugger', :path => '../'
 
-  pod 'AvoInspector', '~> 1.0.1'
+  pod 'AvoInspector', '~> 1.1.1'
   
   target 'IosAnalyticsDebugger_Tests' do
     inherit! :search_paths

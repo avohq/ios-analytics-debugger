@@ -89,7 +89,9 @@
 - (IBAction)playPause:(id)sender {
     if ([[self.playPauseButton currentTitle] isEqual:@"PLAY"]) {
         [self play];
-        [Avo playWithCurrentSongName:[self.musicPlayerLogic currentTrackName]];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [Avo playWithCurrentSongName:[self.musicPlayerLogic currentTrackName]];
+        });
     } else {
         [self pause];
         [Avo pauseWithCurrentSongName:[self.musicPlayerLogic currentTrackName]];
