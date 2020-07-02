@@ -1,6 +1,6 @@
 {
   "name": "IosAnalyticsDebugger",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "summary": "The Avo iOS debugger",
   "description": "Togglable UI to show list of background events, useful to check analytics events in debug builds",
   "homepage": "https://github.com/avohq/ios-analytics-debugger.git",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/avohq/ios-analytics-debugger.git",
-    "tag": "1.1.8"
+    "tag": "1.2.0"
   },
   "platforms": {
     "ios": "10.0"
@@ -22,7 +22,7 @@
   "resource_bundles": {
     "IosAnalyticsDebugger": [
       "IosAnalyticsDebugger/Assets/*.xcassets",
-      "IosAnalyticsDebugger/Classes/**/*.{xib}"
+      "IosAnalyticsDebugger/Classes/**/*.xib"
     ]
   }
 }
