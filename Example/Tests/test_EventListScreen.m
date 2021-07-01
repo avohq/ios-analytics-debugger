@@ -73,7 +73,7 @@ describe(@"AvoEventListScreenSpecs", ^{
         expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.01);
     });
     
-    it(@"Toggle opens and closes event list", ^{
+    xit(@"Toggle opens and closes event list", ^{
         UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
         [vcontroller shoBarDebugger:self];
         AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
