@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayerViewController.h"
+#import "EventsListScreenViewController.h"
 #import "AnalyticsDebugger.h"
 #import <Specta/Specta.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
@@ -21,45 +22,43 @@
 - (void) openEventsListScreen;
 @end
 
+@interface EventsListScreenViewController(Private)
+- (void) dismissSelf;
+@end
+
 SpecBegin(AvoBubbleSpecs)
 
-describe(@"AvoBuble", ^{
+describe(@"AvoBubble", ^{
     __block UIStoryboard *storyboard;
     __block PlayerViewController *vcontroller;
     __block UIWindow *window;
     __block bool recordReference;
+    __block EventsListScreenViewController *eventsListViewController;
     
     beforeEach(^{
         storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         vcontroller = [storyboard instantiateViewControllerWithIdentifier:@"PlayerViewController"];
         window = [[[UIApplication sharedApplication] delegate] window];
+        
+        NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
+        NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
+        eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
+        
         recordReference = false;
     });
     
     afterEach(^{
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac hideDebugger];
+        [eventsListViewController dismissSelf];
         [AnalyticsDebugger.events removeAllObjects];
     });
     
-    xit(@"Renders correctly on main screen", ^{
+    it(@"Renders correctly on main screen", ^{
         [vcontroller showBubble:self];
 
         if(recordReference == true){
             expect(window).will.recordSnapshotNamed(@"render-bubble");
         }
         expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-bubble", 0.01);
-    });
-    
-    it(@"Renders correctly when opened", ^{
-        [vcontroller showBubble:self];
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac openEventsListScreen];
-
-        if(recordReference == true){
-            expect(window).will.recordSnapshotNamed(@"render-bubble-open");
-        }
-        expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-bubble-open", 0.01);
     });
 });
 

@@ -35,25 +35,30 @@ describe(@"AvoEventListScreenSpecs", ^{
     __block SandboxViewController *vcontroller;
     __block UIWindow *window;
     __block bool recordReference;
+    __block EventsListScreenViewController *eventsListViewController;
+    __block AnalyticsDebugger *ac;
     
     beforeEach(^{
         storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         vcontroller = [storyboard instantiateViewControllerWithIdentifier:@"SandboxViewController"];
         [[UIApplication sharedApplication].keyWindow setRootViewController:vcontroller];
         window = [[[UIApplication sharedApplication] delegate] window];
-        recordReference = false;
         
+        NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
+        NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
+        eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
+        ac = [[AnalyticsDebugger alloc] init];
+        
+        recordReference = false;
     });
     
     afterEach(^{
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac hideDebugger];
+        [eventsListViewController dismissSelf];
         [AnalyticsDebugger.events removeAllObjects];
     });
 
-    xit(@"Renders correctly when opened - bubble", ^{
+    it(@"Renders correctly when opened - bubble", ^{
         [vcontroller showBubbleDebugger:self];
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
         [ac openEventsListScreen];
 
         if(recordReference == true){
@@ -62,9 +67,8 @@ describe(@"AvoEventListScreenSpecs", ^{
         expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.01);
     });
 
-    xit(@"Renders correctly when opened - bar", ^{
+    it(@"Renders correctly when opened - bar", ^{
         [vcontroller shoBarDebugger:self];
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
         [ac openEventsListScreen];
 
         if(recordReference == true){
@@ -73,10 +77,8 @@ describe(@"AvoEventListScreenSpecs", ^{
         expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.01);
     });
     
-    xit(@"Toggle opens and closes event list", ^{
-        UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+    it(@"Toggle opens and closes event list", ^{
         [vcontroller shoBarDebugger:self];
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
         [ac openEventsListScreen];
 
         if(recordReference == false){
@@ -85,13 +87,6 @@ describe(@"AvoEventListScreenSpecs", ^{
         else {
             expect(window).after(2).recordSnapshotNamed(@"render-eventlist-open");
         }
-
-        NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
-        NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
-
-        EventsListScreenViewController *eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
-        [eventsListViewController setModalPresentationStyle:UIModalPresentationFullScreen];
-        [rootViewController presentViewController:eventsListViewController animated:YES completion:nil];
         
         [eventsListViewController dismissSelf];
         if(recordReference == false){
@@ -102,16 +97,11 @@ describe(@"AvoEventListScreenSpecs", ^{
         }
     });
     
-    xit(@"Test posting event works", ^{
+    it(@"Test posting event works", ^{
             UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
             [vcontroller shoBarDebugger:self];
-            AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
             [ac openEventsListScreen];
 
-            NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
-            NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
-
-            EventsListScreenViewController *eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
             [eventsListViewController setModalPresentationStyle:UIModalPresentationFullScreen];
             [rootViewController presentViewController:eventsListViewController animated:YES completion:nil];
 

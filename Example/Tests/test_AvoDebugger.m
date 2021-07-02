@@ -34,12 +34,11 @@ describe(@"AvoDebugger", ^{
     });
     
     afterEach(^{
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac hideDebugger];
         [AnalyticsDebugger.events removeAllObjects];
     });
     
-    xit(@"Hide debugger renders correctly - hides debugger UI", ^{
+    it(@"Hide debugger renders correctly - hides debugger UI", ^{
+        [vcontroller showBar:self];
         [vcontroller hideDebugger:self];
         
         if(recordReference == true){

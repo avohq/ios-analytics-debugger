@@ -93,6 +93,7 @@ SpecBegin(AvoDebuggerUnitSpecs)
 
             [self waitForExpectationsWithTimeout:5 handler:nil];
             [myMock verify];
+            [ad hideDebugger];
             [myMock stopMocking];
         });
 
@@ -110,6 +111,7 @@ SpecBegin(AvoDebuggerUnitSpecs)
 
             [self waitForExpectationsWithTimeout:5 handler:nil];
             [myMock verify];
+            [ad hideDebugger];
             [myMock stopMocking];
         });
 

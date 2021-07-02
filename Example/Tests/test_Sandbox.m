@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PlayerViewController.h"
+#import "EventsListScreenViewController.h"
 #import "SandboxViewController.h"
 #import "AnalyticsDebugger.h"
 #import "AVOAppDelegate.h"
@@ -22,6 +22,10 @@
 - (IBAction)showBubbleDebugger:(id)sender;
 @end
 
+@interface EventsListScreenViewController(Private)
+- (void) dismissSelf;
+@end
+
 SpecBegin(AvoSandboxSpecs)
 
 describe(@"AvoSandbox", ^{
@@ -30,18 +34,23 @@ describe(@"AvoSandbox", ^{
     __block SandboxViewController *vcontroller;
     __block UIWindow *window;
     __block bool recordReference;
+    __block EventsListScreenViewController *eventsListViewController;
     
     beforeEach(^{
         storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         vcontroller = [storyboard instantiateViewControllerWithIdentifier:@"SandboxViewController"];
         [[UIApplication sharedApplication].keyWindow setRootViewController:vcontroller];
         window = [[[UIApplication sharedApplication] delegate] window];
+        
+        NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
+        NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
+        eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
+        
         recordReference = false;
     });
     
     afterEach(^{
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac hideDebugger];
+        [eventsListViewController dismissSelf];
         [AnalyticsDebugger.events removeAllObjects];
     });
     
@@ -52,7 +61,7 @@ describe(@"AvoSandbox", ^{
         expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-sandbox", 0.01);
     });
     
-    xit(@"Render bubble debugger from sandbox mode correctly", ^{
+    it(@"Render bubble debugger from sandbox mode correctly", ^{
         [vcontroller showBubbleDebugger:self];
 
         if(recordReference == true){
@@ -61,7 +70,7 @@ describe(@"AvoSandbox", ^{
         expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-sandbox-bubble", 0.01);
     });
 
-    xit(@"Render bar debugger from sandbox mode correctly", ^{
+    it(@"Render bar debugger from sandbox mode correctly", ^{
         [vcontroller shoBarDebugger:self];
 
         if(recordReference == true){

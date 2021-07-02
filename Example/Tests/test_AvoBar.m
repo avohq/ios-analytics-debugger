@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayerViewController.h"
+#import "EventsListScreenViewController.h"
 #import "AnalyticsDebugger.h"
 #import <Specta/Specta.h>
 #import <FBSnapshotTestCase/FBSnapshotTestCase.h>
@@ -20,6 +21,10 @@
 - (void) openEventsListScreen;
 @end
 
+@interface EventsListScreenViewController(Private)
+- (void) dismissSelf;
+@end
+
 SpecBegin(AvoBarSpecs)
 
 describe(@"AvoBar", ^{
@@ -28,17 +33,22 @@ describe(@"AvoBar", ^{
     __block PlayerViewController *vcontroller;
     __block UIWindow *window;
     __block bool recordReference;
+    __block EventsListScreenViewController *eventsListViewController;
     
     beforeEach(^{
         storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         vcontroller = [storyboard instantiateViewControllerWithIdentifier:@"PlayerViewController"];
         window = [[[UIApplication sharedApplication] delegate] window];
+        
+        NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
+        NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
+        eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
+        
         recordReference = false;
     });
     
     afterEach(^{
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac hideDebugger];
+        [eventsListViewController dismissSelf];
         [AnalyticsDebugger.events removeAllObjects];
     });
     
@@ -49,17 +59,6 @@ describe(@"AvoBar", ^{
             expect(window).will.recordSnapshotNamed(@"render-bar");
         }
         expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-bar", 0.01);
-    });
-    
-    it(@"Renders correctly when opened", ^{
-        [vcontroller showBar:self];
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac openEventsListScreen];
-
-        if(recordReference == true){
-            expect(window).will.recordSnapshotNamed(@"render-bar-open");
-        }
-        expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-bar-open", 0.01);
     });
 });
 

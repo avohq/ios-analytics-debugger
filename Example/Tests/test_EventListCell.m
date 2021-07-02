@@ -50,8 +50,6 @@ describe(@"AvoEventListCellSpecs", ^{
     });
     
     afterEach(^{
-        AnalyticsDebugger *ac = [[AnalyticsDebugger alloc] init];
-        [ac hideDebugger];
         [AnalyticsDebugger.events removeAllObjects];
     });
 
