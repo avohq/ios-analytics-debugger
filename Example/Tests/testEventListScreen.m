@@ -71,7 +71,7 @@ SpecBegin(AvoEventListScreen)
             if(recordReference == true){
                 expect(window).after(2).recordSnapshotNamed(@"render-eventlist-bubble");
             }
-            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.01);
+            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.01);
         });
 
         it(@"Renders correctly when opened - bar", ^{
@@ -79,9 +79,9 @@ SpecBegin(AvoEventListScreen)
             [ac openEventsListScreen];
 
             if(recordReference == true){
-                expect(window).will.recordSnapshotNamed(@"render-eventlist-bar");
+                expect(window).after(2).recordSnapshotNamed(@"render-eventlist-bar");
             }
-            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.01);
+            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.01);
         });
 
         xit(@"Toggle opens and closes event list", ^{
@@ -103,9 +103,6 @@ SpecBegin(AvoEventListScreen)
         it(@"Test posting event works", ^{
             [vcontroller shoBarDebugger:self];
             [ac openEventsListScreen];
-
-            [eventsListViewController setModalPresentationStyle:UIModalPresentationFullScreen];
-            [vcontroller presentViewController:eventsListViewController animated:YES completion:nil];
 
             NSMutableArray * props = [NSMutableArray new];
 
