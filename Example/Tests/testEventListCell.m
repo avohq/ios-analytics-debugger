@@ -1,18 +1,21 @@
 //
-//  test_EventListCell.m
+//  testEventListCell.m
 //  IosAnalyticsDebugger_Tests
 //
-//  Created by Roberts Brālis on 28/06/2021.
+//  Created by Roberts Brālis on 06/07/2021.
 //  Copyright © 2021 Alexey Verein. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <Specta/Specta.h>
+#import <Expecta/Expecta.h>
+#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import <Expecta_Snapshots/EXPMatchers+FBSnapshotTest.h>
+
 #import "SandboxViewController.h"
 #import "AnalyticsDebugger.h"
-#import "EventTableViewCell.h"
 #import "EventsListScreenViewController.h"
-#import <Specta/Specta.h>
-#import <FBSnapshotTestCase/FBSnapshotTestCase.h>
+#import "EventTableViewCell.h"
 
 @interface SandboxViewController(Private)
 - (IBAction)onSendEventClick:(id)sender;
@@ -32,9 +35,10 @@
 - (void) toggleExpend;
 @end
 
-SpecBegin(AvoEventListCellSpecs)
 
-describe(@"AvoEventListCellSpecs", ^{
+SpecBegin(AvoEventListCell)
+
+describe(@"AvoEventListCell", ^{
     __block UIStoryboard *storyboard;
     __block SandboxViewController *vcontroller;
     __block UIWindow *window;
@@ -46,13 +50,12 @@ describe(@"AvoEventListCellSpecs", ^{
         [[UIApplication sharedApplication].keyWindow setRootViewController:vcontroller];
         window = [[[UIApplication sharedApplication] delegate] window];
         recordReference = false;
-        
     });
     
     afterEach(^{
         [AnalyticsDebugger.events removeAllObjects];
     });
-
+    
     xit(@"Expands on click", ^{
         UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
         [vcontroller showBubbleDebugger:self];
@@ -93,6 +96,8 @@ describe(@"AvoEventListCellSpecs", ^{
         expect(window).after(5).haveValidSnapshotNamedWithTolerance(@"render-eventcell-expand", 0.01);
     });
     
+    
 });
 
 SpecEnd
+

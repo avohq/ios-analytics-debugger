@@ -44,8 +44,14 @@ jobs:
         run: bundle exec pod install
         working-directory: ${{ env.project-path }}
 
-      - name: Test
+      - name: Run unit tests
         run: |
           set -o pipefail
-          xcodebuild -workspace IosAnalyticsDebugger.xcworkspace -scheme IosAnalyticsDebugger-Example -destination platform='${{ env.simulator }}' clean test | xcpretty
+          xcodebuild -workspace IosAnalyticsDebugger.xcworkspace -scheme IosAnalyticsDebugger-Example -destination platform='${{ env.simulator }}' clean test -only-testing:IosAnalyticsDebugger_Tests/AvoDebuggerUnitSpec | xcpretty
+        working-directory: ${{ env.project-path }}
+
+      - name: Run snapshot tests
+        run: |
+          set -o pipefail
+          xcodebuild -workspace IosAnalyticsDebugger.xcworkspace -scheme IosAnalyticsDebugger-Example -destination platform='${{ env.simulator }}' clean test -only-testing:IosAnalyticsDebugger_Tests/AvoBarSpec -only-testing:IosAnalyticsDebugger_Tests/AvoBubbleSpec -only-testing:IosAnalyticsDebugger_Tests/AvoEventListCellSpec -only-testing:IosAnalyticsDebugger_Tests/AvoEventListScreenSpec -only-testing:IosAnalyticsDebugger_Tests/AvoSandboxSpec -only-testing:IosAnalyticsDebugger_Tests/AvoDebuggerSpec | xcpretty
         working-directory: ${{ env.project-path }}
