@@ -30,14 +30,14 @@
 		6ECEE61D238BFCD200384E9B /* AVODatascopeDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEE61C238BFCD200384E9B /* AVODatascopeDestination.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		755973B6268B781600EE0975 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755973B5268B781600EE0975 /* OCMock.framework */; };
-		756E919B267CBCF100259890 /* test_EventListScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 756E919A267CBCF100259890 /* test_EventListScreen.m */; };
-		75835F8E268B5C2000BBF8FE /* InitializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75835F8D268B5C2000BBF8FE /* InitializationTests.m */; };
 		7585F912267897B3006AF27D /* Avo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7585F911267897B3006AF27D /* Avo.m */; };
-		7585F91426789CAE006AF27D /* test_AvoBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7585F91326789CAE006AF27D /* test_AvoBar.m */; };
-		75BD92CD2689FC110093A01E /* test_EventListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BD92CC2689FC110093A01E /* test_EventListCell.m */; };
-		75F89CC6267B343600B9E526 /* test_AvoBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F89CC5267B343600B9E526 /* test_AvoBubble.m */; };
-		75F89CC8267B393100B9E526 /* test_AvoDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F89CC7267B393100B9E526 /* test_AvoDebugger.m */; };
-		75F89CCA267B6B8500B9E526 /* test_Sandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F89CC9267B6B8500B9E526 /* test_Sandbox.m */; };
+		75AB29AA26943631002D8BE9 /* testEventListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29A926943631002D8BE9 /* testEventListCell.m */; };
+		75AB29AC26943D12002D8BE9 /* testAvoBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29AB26943D12002D8BE9 /* testAvoBar.m */; };
+		75AB29AE269440D0002D8BE9 /* testAvoBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29AD269440D0002D8BE9 /* testAvoBubble.m */; };
+		75AB29B0269442BB002D8BE9 /* testAvoDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29AF269442BB002D8BE9 /* testAvoDebugger.m */; };
+		75AB29B2269444F1002D8BE9 /* testSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29B1269444F1002D8BE9 /* testSandbox.m */; };
+		75AB29B426944CD5002D8BE9 /* testEventListScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29B326944CD5002D8BE9 /* testEventListScreen.m */; };
+		75AB29B62694534D002D8BE9 /* unitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29B52694534D002D8BE9 /* unitTests.m */; };
 		78A80FBA1670A5648143599E /* Pods_IosAnalyticsDebugger_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA13B546A4AC4A02AFD3C4E /* Pods_IosAnalyticsDebugger_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D3C5DC1FECD56723D007AA67 /* Pods_IosAnalyticsDebugger_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6122E965B4B88E7CE1AFAF1 /* Pods_IosAnalyticsDebugger_Example.framework */; };
@@ -94,15 +94,15 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7227854F05E1001A1E623CE2 /* IosAnalyticsDebugger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IosAnalyticsDebugger.podspec; path = ../IosAnalyticsDebugger.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		755973B5268B781600EE0975 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		756E919A267CBCF100259890 /* test_EventListScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test_EventListScreen.m; sourceTree = "<group>"; };
-		75835F8D268B5C2000BBF8FE /* InitializationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitializationTests.m; sourceTree = "<group>"; };
 		7585F910267897B3006AF27D /* Avo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avo.h; sourceTree = "<group>"; };
 		7585F911267897B3006AF27D /* Avo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avo.m; sourceTree = "<group>"; };
-		7585F91326789CAE006AF27D /* test_AvoBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test_AvoBar.m; sourceTree = "<group>"; };
-		75BD92CC2689FC110093A01E /* test_EventListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test_EventListCell.m; sourceTree = "<group>"; };
-		75F89CC5267B343600B9E526 /* test_AvoBubble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test_AvoBubble.m; sourceTree = "<group>"; };
-		75F89CC7267B393100B9E526 /* test_AvoDebugger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test_AvoDebugger.m; sourceTree = "<group>"; };
-		75F89CC9267B6B8500B9E526 /* test_Sandbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test_Sandbox.m; sourceTree = "<group>"; };
+		75AB29A926943631002D8BE9 /* testEventListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testEventListCell.m; sourceTree = "<group>"; };
+		75AB29AB26943D12002D8BE9 /* testAvoBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testAvoBar.m; sourceTree = "<group>"; };
+		75AB29AD269440D0002D8BE9 /* testAvoBubble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testAvoBubble.m; sourceTree = "<group>"; };
+		75AB29AF269442BB002D8BE9 /* testAvoDebugger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testAvoDebugger.m; sourceTree = "<group>"; };
+		75AB29B1269444F1002D8BE9 /* testSandbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testSandbox.m; sourceTree = "<group>"; };
+		75AB29B326944CD5002D8BE9 /* testEventListScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testEventListScreen.m; sourceTree = "<group>"; };
+		75AB29B52694534D002D8BE9 /* unitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = unitTests.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D6C3E74771E2AFCA361D1477 /* Pods-IosAnalyticsDebugger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosAnalyticsDebugger_Example.release.xcconfig"; path = "Target Support Files/Pods-IosAnalyticsDebugger_Example/Pods-IosAnalyticsDebugger_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F6122E965B4B88E7CE1AFAF1 /* Pods_IosAnalyticsDebugger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IosAnalyticsDebugger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,14 +222,14 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				75835F8D268B5C2000BBF8FE /* InitializationTests.m */,
-				7585F91326789CAE006AF27D /* test_AvoBar.m */,
-				75F89CC9267B6B8500B9E526 /* test_Sandbox.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
-				75F89CC5267B343600B9E526 /* test_AvoBubble.m */,
-				75F89CC7267B393100B9E526 /* test_AvoDebugger.m */,
-				756E919A267CBCF100259890 /* test_EventListScreen.m */,
-				75BD92CC2689FC110093A01E /* test_EventListCell.m */,
+				75AB29A926943631002D8BE9 /* testEventListCell.m */,
+				75AB29AB26943D12002D8BE9 /* testAvoBar.m */,
+				75AB29AD269440D0002D8BE9 /* testAvoBubble.m */,
+				75AB29AF269442BB002D8BE9 /* testAvoDebugger.m */,
+				75AB29B1269444F1002D8BE9 /* testSandbox.m */,
+				75AB29B326944CD5002D8BE9 /* testEventListScreen.m */,
+				75AB29B52694534D002D8BE9 /* unitTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -493,13 +493,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75BD92CD2689FC110093A01E /* test_EventListCell.m in Sources */,
-				75F89CCA267B6B8500B9E526 /* test_Sandbox.m in Sources */,
-				7585F91426789CAE006AF27D /* test_AvoBar.m in Sources */,
-				75835F8E268B5C2000BBF8FE /* InitializationTests.m in Sources */,
-				756E919B267CBCF100259890 /* test_EventListScreen.m in Sources */,
-				75F89CC6267B343600B9E526 /* test_AvoBubble.m in Sources */,
-				75F89CC8267B393100B9E526 /* test_AvoDebugger.m in Sources */,
+				75AB29AE269440D0002D8BE9 /* testAvoBubble.m in Sources */,
+				75AB29B62694534D002D8BE9 /* unitTests.m in Sources */,
+				75AB29B426944CD5002D8BE9 /* testEventListScreen.m in Sources */,
+				75AB29B0269442BB002D8BE9 /* testAvoDebugger.m in Sources */,
+				75AB29B2269444F1002D8BE9 /* testSandbox.m in Sources */,
+				75AB29AC26943D12002D8BE9 /* testAvoBar.m in Sources */,
+				75AB29AA26943631002D8BE9 /* testEventListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,7 +574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -607,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
