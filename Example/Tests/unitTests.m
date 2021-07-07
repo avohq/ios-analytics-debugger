@@ -71,15 +71,15 @@ SpecBegin(AvoDebuggerUnit)
             }).notTo.raiseAny();
         });
 
-        it(@"Initializes with custom debugger", ^{
-            NSObject *debuggerDummy = [[NSObject alloc] init];
+        it(@"Initializes with debugger", ^{
+            AnalyticsDebugger *debuggerDummy = [[AnalyticsDebugger alloc] init];
             expect(^{
                 [DebuggerAnalytics initAvoWithEnv:AVOEnvDev version:version customNodeJsDestination:[DebuggerAnalyticsDestination new] debugger:debuggerDummy];
             }).notTo.raiseAny();
         });
 
-        it(@"Initializes with custom debugger in strict mode", ^{
-            NSObject *debuggerDummy = [[NSObject alloc] init];
+        it(@"Initializes with debugger in strict mode", ^{
+            AnalyticsDebugger *debuggerDummy = [[AnalyticsDebugger alloc] init];
             expect(^{
                 [DebuggerAnalytics initAvoWithEnv:AVOEnvDev version:version customNodeJsDestination:[DebuggerAnalyticsDestination new] strict:YES debugger:debuggerDummy];
             }).notTo.raiseAny();
