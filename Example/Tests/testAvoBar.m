@@ -37,6 +37,7 @@ SpecBegin(AvoBar)
                 [AnalyticsDebugger.events removeAllObjects];
             }
             recordReference = false;
+            [Expecta setAsynchronousTestTimeout:10];
         });
         
         afterEach(^{

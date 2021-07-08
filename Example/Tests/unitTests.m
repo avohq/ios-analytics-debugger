@@ -30,10 +30,6 @@ SpecBegin(AvoDebuggerUnit)
             ad = [[AnalyticsDebugger alloc] init];
         });
         
-        afterEach(^{
-            
-        });
-        
         it(@"Does not throw exceptions", ^{
             expect(^{
                 [DebuggerAnalytics initAvoWithEnv:AVOEnvProd version:version customNodeJsDestination:[DebuggerAnalyticsDestination new]];

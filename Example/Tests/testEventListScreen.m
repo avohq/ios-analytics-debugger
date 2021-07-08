@@ -57,6 +57,7 @@ SpecBegin(AvoEventListScreen)
             
             [vcontroller showBubbleDebugger:self];
             recordReference = false;
+            [Expecta setAsynchronousTestTimeout:10];
         });
         
         afterEach(^{
@@ -69,9 +70,9 @@ SpecBegin(AvoEventListScreen)
             [ac openEventsListScreen];
 
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-eventlist-bubble");
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-bubble");
             }
-            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.01);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.01);
         });
 
         it(@"Renders correctly when opened - bar", ^{
@@ -79,9 +80,9 @@ SpecBegin(AvoEventListScreen)
             [ac openEventsListScreen];
 
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-eventlist-bar");
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-bar");
             }
-            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.01);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.01);
         });
 
         xit(@"Toggle opens and closes event list", ^{
@@ -89,15 +90,15 @@ SpecBegin(AvoEventListScreen)
             [ac openEventsListScreen];
 
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-eventlist-open");
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-open");
             }
-            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-eventlist-open", 0.1);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-open", 0.1);
             
             [eventsListViewController dismissSelf];
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-eventlist-closed");
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-closed");
             }
-            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-eventlist-closed", 0.1);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-closed", 0.1);
         });
         
         it(@"Test posting event works", ^{
@@ -116,10 +117,10 @@ SpecBegin(AvoEventListScreen)
             [ac publishEvent:@"Test IOS Debugger Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
                 withProperties:props withErrors:errors];
             if(recordReference == false){
-                expect(window).after(3).haveValidSnapshotNamedWithTolerance(@"render-eventlist-postevent", 0.1);
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-postevent", 0.1);
             }
             else {
-                expect(window).after(3).recordSnapshotNamed(@"render-eventlist-postevent");
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-postevent");
             }
         });
     });

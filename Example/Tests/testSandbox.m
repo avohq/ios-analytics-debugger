@@ -51,6 +51,7 @@ SpecBegin(AvoSandbox)
             }
             
             recordReference = false;
+            [Expecta setAsynchronousTestTimeout:10];
             [vcontroller showBubbleDebugger:self];
         });
         
@@ -60,27 +61,27 @@ SpecBegin(AvoSandbox)
         
         it(@"Render sandbox mode correctly", ^{
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-sandbox");
+                expect(window).will.recordSnapshotNamed(@"render-sandbox");
             }
-            expect(window).after(2).haveValidSnapshotNamed(@"render-sandbox");
+            expect(window).will.haveValidSnapshotNamed(@"render-sandbox");
         });
         
         it(@"Render bubble debugger from sandbox mode correctly", ^{
             [vcontroller showBubbleDebugger:self];
 
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-sandbox-bubble");
+                expect(window).will.recordSnapshotNamed(@"render-sandbox-bubble");
             }
-            expect(window).after(2).haveValidSnapshotNamed(@"render-sandbox-bubble");
+            expect(window).will.haveValidSnapshotNamed(@"render-sandbox-bubble");
         });
 
         it(@"Render bar debugger from sandbox mode correctly", ^{
             [vcontroller shoBarDebugger:self];
 
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-sandbox-bar");
+                expect(window).will.recordSnapshotNamed(@"render-sandbox-bar");
             }
-            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-sandbox-bar", 0.01);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-sandbox-bar", 0.01);
         });
 
         it(@"Render sending error to debugger - check if shows up", ^{
@@ -88,9 +89,9 @@ SpecBegin(AvoSandbox)
             [vcontroller onSendErrorClick:self];
 
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-sandbox-send-error");
+                expect(window).will.recordSnapshotNamed(@"render-sandbox-send-error");
             }
-            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-sandbox-send-error", 0.1);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-sandbox-send-error", 0.1);
         });
 
         it(@"Render sending valid event to debugger - check if shows up", ^{
@@ -98,9 +99,9 @@ SpecBegin(AvoSandbox)
             [vcontroller onSendEventClick:self];
 
             if(recordReference == true){
-                expect(window).after(2).recordSnapshotNamed(@"render-sandbox-send-event");
+                expect(window).will.recordSnapshotNamed(@"render-sandbox-send-event");
             }
-            expect(window).after(2).haveValidSnapshotNamedWithTolerance(@"render-sandbox-send-event", 0.1);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-sandbox-send-event", 0.1);
         });
 
         it(@"Render sending error event delayed - check if renders", ^{
