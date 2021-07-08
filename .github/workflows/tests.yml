@@ -55,3 +55,10 @@ jobs:
           set -o pipefail
           xcodebuild -workspace IosAnalyticsDebugger.xcworkspace -scheme IosAnalyticsDebugger-Example -destination platform='${{ env.simulator }}' clean test -only-testing:IosAnalyticsDebugger_Tests/AvoBarSpec -only-testing:IosAnalyticsDebugger_Tests/AvoBubbleSpec -only-testing:IosAnalyticsDebugger_Tests/AvoEventListCellSpec -only-testing:IosAnalyticsDebugger_Tests/AvoEventListScreenSpec -only-testing:IosAnalyticsDebugger_Tests/AvoSandboxSpec -only-testing:IosAnalyticsDebugger_Tests/AvoDebuggerSpec | xcpretty
         working-directory: ${{ env.project-path }}
+
+      - name: Store image diffs if failed
+        if: failure()
+        uses: actions/upload-artifact@v1
+        with:
+          name: snapshot-test-diffs
+          path: ${{ env.project-path }}/IosAnalyticsDebuggerTests/FailureDiffs/

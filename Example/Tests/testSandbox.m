@@ -68,6 +68,7 @@ SpecBegin(AvoSandbox)
         
         it(@"Render bubble debugger from sandbox mode correctly", ^{
             [vcontroller showBubbleDebugger:self];
+            [AnalyticsDebugger.events removeAllObjects];
 
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-sandbox-bubble");
