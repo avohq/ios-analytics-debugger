@@ -57,9 +57,12 @@ SpecBegin(AvoSandbox)
         
         afterEach(^{
             [AnalyticsDebugger.events removeAllObjects];
+            [window setUserInteractionEnabled:TRUE];
         });
         
         it(@"Render sandbox mode correctly", ^{
+//            Try disabling user interaction in case if automation accidently moves the bubble
+            [window setUserInteractionEnabled:FALSE];
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-sandbox");
             }
@@ -68,8 +71,8 @@ SpecBegin(AvoSandbox)
         
         it(@"Render bubble debugger from sandbox mode correctly", ^{
             [vcontroller showBubbleDebugger:self];
-            [AnalyticsDebugger.events removeAllObjects];
-
+//            Try disabling user interaction in case if automation accidently moves the bubble
+            [window setUserInteractionEnabled:FALSE];
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-sandbox-bubble");
             }
