@@ -18,8 +18,6 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		6E27B37723D5FB820014479C /* Avo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E27B37623D5FB810014479C /* Avo.m */; };
 		6E6A270E2375BF300075B270 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6A270D2375BF300075B270 /* PlayerViewController.m */; };
 		6E8042BF2379969700AB7C54 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8042BE2379969700AB7C54 /* AVFoundation.framework */; };
 		6E8042C4237996F200AB7C54 /* cartoon_whistle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6E8042C1237996F200AB7C54 /* cartoon_whistle.wav */; };
@@ -31,6 +29,15 @@
 		6E9B69752379C19700F7032B /* SandboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B69742379C19700F7032B /* SandboxViewController.m */; };
 		6ECEE61D238BFCD200384E9B /* AVODatascopeDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECEE61C238BFCD200384E9B /* AVODatascopeDestination.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		755973B6268B781600EE0975 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 755973B5268B781600EE0975 /* OCMock.framework */; };
+		7585F912267897B3006AF27D /* Avo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7585F911267897B3006AF27D /* Avo.m */; };
+		75AB29AA26943631002D8BE9 /* testEventListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29A926943631002D8BE9 /* testEventListCell.m */; };
+		75AB29AC26943D12002D8BE9 /* testAvoBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29AB26943D12002D8BE9 /* testAvoBar.m */; };
+		75AB29AE269440D0002D8BE9 /* testAvoBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29AD269440D0002D8BE9 /* testAvoBubble.m */; };
+		75AB29B0269442BB002D8BE9 /* testAvoDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29AF269442BB002D8BE9 /* testAvoDebugger.m */; };
+		75AB29B2269444F1002D8BE9 /* testSandbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29B1269444F1002D8BE9 /* testSandbox.m */; };
+		75AB29B426944CD5002D8BE9 /* testEventListScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29B326944CD5002D8BE9 /* testEventListScreen.m */; };
+		75AB29B62694534D002D8BE9 /* unitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AB29B52694534D002D8BE9 /* unitTests.m */; };
 		78A80FBA1670A5648143599E /* Pods_IosAnalyticsDebugger_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCA13B546A4AC4A02AFD3C4E /* Pods_IosAnalyticsDebugger_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D3C5DC1FECD56723D007AA67 /* Pods_IosAnalyticsDebugger_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6122E965B4B88E7CE1AFAF1 /* Pods_IosAnalyticsDebugger_Example.framework */; };
@@ -66,10 +73,8 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		644F0A63E13025B99B9066B5 /* Pods-IosAnalyticsDebugger_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosAnalyticsDebugger_Example.debug.xcconfig"; path = "Target Support Files/Pods-IosAnalyticsDebugger_Example/Pods-IosAnalyticsDebugger_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		6E27B37623D5FB810014479C /* Avo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avo.m; sourceTree = "<group>"; };
 		6E6A270C2375BF0B0075B270 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		6E6A270D2375BF300075B270 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		6E8042BE2379969700AB7C54 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -84,11 +89,20 @@
 		6E8042CE2379A6A700AB7C54 /* MusicPlayerLogic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerLogic.m; sourceTree = "<group>"; };
 		6E9B69732379C19700F7032B /* SandboxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SandboxViewController.h; sourceTree = "<group>"; };
 		6E9B69742379C19700F7032B /* SandboxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SandboxViewController.m; sourceTree = "<group>"; };
-		6ECEE618238BFA1600384E9B /* Avo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avo.h; sourceTree = "<group>"; };
 		6ECEE61B238BFCD200384E9B /* AVODatascopeDestination.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVODatascopeDestination.h; sourceTree = "<group>"; };
 		6ECEE61C238BFCD200384E9B /* AVODatascopeDestination.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVODatascopeDestination.m; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7227854F05E1001A1E623CE2 /* IosAnalyticsDebugger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IosAnalyticsDebugger.podspec; path = ../IosAnalyticsDebugger.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		755973B5268B781600EE0975 /* OCMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OCMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7585F910267897B3006AF27D /* Avo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Avo.h; sourceTree = "<group>"; };
+		7585F911267897B3006AF27D /* Avo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Avo.m; sourceTree = "<group>"; };
+		75AB29A926943631002D8BE9 /* testEventListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testEventListCell.m; sourceTree = "<group>"; };
+		75AB29AB26943D12002D8BE9 /* testAvoBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testAvoBar.m; sourceTree = "<group>"; };
+		75AB29AD269440D0002D8BE9 /* testAvoBubble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testAvoBubble.m; sourceTree = "<group>"; };
+		75AB29AF269442BB002D8BE9 /* testAvoDebugger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testAvoDebugger.m; sourceTree = "<group>"; };
+		75AB29B1269444F1002D8BE9 /* testSandbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testSandbox.m; sourceTree = "<group>"; };
+		75AB29B326944CD5002D8BE9 /* testEventListScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testEventListScreen.m; sourceTree = "<group>"; };
+		75AB29B52694534D002D8BE9 /* unitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = unitTests.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D6C3E74771E2AFCA361D1477 /* Pods-IosAnalyticsDebugger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosAnalyticsDebugger_Example.release.xcconfig"; path = "Target Support Files/Pods-IosAnalyticsDebugger_Example/Pods-IosAnalyticsDebugger_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F6122E965B4B88E7CE1AFAF1 /* Pods_IosAnalyticsDebugger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IosAnalyticsDebugger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				755973B6268B781600EE0975 /* OCMock.framework in Frameworks */,
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -157,6 +172,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				755973B5268B781600EE0975 /* OCMock.framework */,
 				6E8042BE2379969700AB7C54 /* AVFoundation.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
@@ -171,8 +187,8 @@
 		6003F593195388D20070C39A /* Example for IosAnalyticsDebugger */ = {
 			isa = PBXGroup;
 			children = (
-				6E27B37623D5FB810014479C /* Avo.m */,
-				6ECEE618238BFA1600384E9B /* Avo.h */,
+				7585F910267897B3006AF27D /* Avo.h */,
+				7585F911267897B3006AF27D /* Avo.m */,
 				6003F59C195388D20070C39A /* AVOAppDelegate.h */,
 				6003F59D195388D20070C39A /* AVOAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -206,8 +222,14 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				75AB29A926943631002D8BE9 /* testEventListCell.m */,
+				75AB29AB26943D12002D8BE9 /* testAvoBar.m */,
+				75AB29AD269440D0002D8BE9 /* testAvoBubble.m */,
+				75AB29AF269442BB002D8BE9 /* testAvoDebugger.m */,
+				75AB29B1269444F1002D8BE9 /* testSandbox.m */,
+				75AB29B326944CD5002D8BE9 /* testEventListScreen.m */,
+				75AB29B52694534D002D8BE9 /* unitTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -307,9 +329,6 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Alexey Verein";
 				TargetAttributes = {
-					6003F589195388D20070C39A = {
-						DevelopmentTeam = G7H6Q48U3Z;
-					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -438,11 +457,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-IosAnalyticsDebugger_Example/Pods-IosAnalyticsDebugger_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AvoInspector/AvoInspector.framework",
 				"${BUILT_PRODUCTS_DIR}/IosAnalyticsDebugger/IosAnalyticsDebugger.framework",
+				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoInspector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IosAnalyticsDebugger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -462,7 +483,7 @@
 				6E8042CC2379A3FA00AB7C54 /* MusicStorage.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				6E9B69752379C19700F7032B /* SandboxViewController.m in Sources */,
-				6E27B37723D5FB820014479C /* Avo.m in Sources */,
+				7585F912267897B3006AF27D /* Avo.m in Sources */,
 				6ECEE61D238BFCD200384E9B /* AVODatascopeDestination.m in Sources */,
 				6E6A270E2375BF300075B270 /* PlayerViewController.m in Sources */,
 			);
@@ -472,7 +493,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				75AB29AE269440D0002D8BE9 /* testAvoBubble.m in Sources */,
+				75AB29B62694534D002D8BE9 /* unitTests.m in Sources */,
+				75AB29B426944CD5002D8BE9 /* testEventListScreen.m in Sources */,
+				75AB29B0269442BB002D8BE9 /* testAvoDebugger.m in Sources */,
+				75AB29B2269444F1002D8BE9 /* testSandbox.m in Sources */,
+				75AB29AC26943D12002D8BE9 /* testAvoBar.m in Sources */,
+				75AB29AA26943631002D8BE9 /* testEventListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -580,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -592,7 +619,7 @@
 			baseConfigurationReference = 644F0A63E13025B99B9066B5 /* Pods-IosAnalyticsDebugger_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = G7H6Q48U3Z;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IosAnalyticsDebugger/IosAnalyticsDebugger-Prefix.pch";
 				INFOPLIST_FILE = "IosAnalyticsDebugger/IosAnalyticsDebugger-Info.plist";
@@ -609,7 +636,7 @@
 			baseConfigurationReference = D6C3E74771E2AFCA361D1477 /* Pods-IosAnalyticsDebugger_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = G7H6Q48U3Z;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IosAnalyticsDebugger/IosAnalyticsDebugger-Prefix.pch";
 				INFOPLIST_FILE = "IosAnalyticsDebugger/IosAnalyticsDebugger-Info.plist";
@@ -637,7 +664,44 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AvoInspector/AvoInspector.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Expecta+Snapshots/Expecta_Snapshots.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Expecta/Expecta.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IosAnalyticsDebugger/IosAnalyticsDebugger.framework/Headers\"",
+					"$(PROJECT_DIR)/usr/include",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OCMock/OCMock.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Specta/Specta.framework/Headers\"",
+				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AvoInspector\"",
+					"-framework",
+					"\"Expecta\"",
+					"-framework",
+					"\"Expecta_Snapshots\"",
+					"-framework",
+					"\"FBSnapshotTestCase\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"IosAnalyticsDebugger\"",
+					"-framework",
+					"\"OCMock\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Specta\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"XCTest\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -658,7 +722,44 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/AvoInspector/AvoInspector.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Expecta+Snapshots/Expecta_Snapshots.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Expecta/Expecta.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IosAnalyticsDebugger/IosAnalyticsDebugger.framework/Headers\"",
+					"$(PROJECT_DIR)/usr/include",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OCMock/OCMock.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Specta/Specta.framework/Headers\"",
+				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AvoInspector\"",
+					"-framework",
+					"\"Expecta\"",
+					"-framework",
+					"\"Expecta_Snapshots\"",
+					"-framework",
+					"\"FBSnapshotTestCase\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"IosAnalyticsDebugger\"",
+					"-framework",
+					"\"OCMock\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Specta\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"XCTest\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
