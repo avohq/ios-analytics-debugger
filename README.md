@@ -14,7 +14,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ### Swift Package Manager
 
-You can include this debugger with SPM [from this repo](https://github.com/avohq/ios-analytics-debugger)
+You can include this debugger with SPM [from this repo](https://github.com/avohq/ios-analytics-debugger-spm)
 
 ### Cocoapods
 
