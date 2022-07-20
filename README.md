@@ -39,7 +39,7 @@ Swift
 
 1. The debugger object maintains the history of your analytics events, so to share the history between different screens you should use the same debugger instance. We recommend to have a singleton that you provide or inject to your screens. A simple example can be found [here](https://github.com/avohq/ios-analytics-debugger/blob/master/Example/IosAnalyticsDebugger/AVOAppDelegate.m#L12).
 
-2. Even if your app has 1 screen (common case in PoC apps), remeber to keep a reference to the `AnalyticsDebugger` instance somewhere. Otherwise it will become unresponsive to touches.
+2. Even if your app only has one screen (common case in PoC apps), remember to keep a reference to the `AnalyticsDebugger` instance somewhere. Otherwise it will become unresponsive to touches.
 
 # Show the debugger
 
