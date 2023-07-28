@@ -22,9 +22,6 @@ Pod::Spec.new do |s|
   
   s.source_files = 'IosAnalyticsDebugger/Classes/**/*.{h,m}'
   
-  s.resources = ['IosAnalyticsDebugger/AvoAssets/*.xcassets',
-  'IosAnalyticsDebugger/Classes/**/*.xib']
-  
   s.resource_bundles = {
     'IosAnalyticsDebugger' => ['IosAnalyticsDebugger/AvoAssets/*.xcassets',
     'IosAnalyticsDebugger/Classes/**/*.xib']
