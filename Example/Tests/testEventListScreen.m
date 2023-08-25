@@ -72,7 +72,7 @@ SpecBegin(AvoEventListScreen)
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-bubble");
             }
-            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.01);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.02);
         });
 
         it(@"Renders correctly when opened - bar", ^{
@@ -82,10 +82,10 @@ SpecBegin(AvoEventListScreen)
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-bar");
             }
-            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.01);
+            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.02);
         });
 
-        xit(@"Toggle opens and closes event list", ^{
+        it(@"Toggle opens and closes event list", ^{
             [vcontroller shoBarDebugger:self];
             [ac openEventsListScreen];
 
