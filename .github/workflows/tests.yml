@@ -39,10 +39,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
 
-      - name: Install iOS project dependencies
-        if: steps.cocoapods-cache.outputs.cache-hit != 'true'
-        run: bundle exec pod install
-        working-directory: ${{ env.project-path }}
+      - name: setup-cocoapods
+        uses: maxim-lobanov/setup-cocoapods@v1
+        with:
+          podfile-path: Example/Podfile.lock
+
+      - name: Install Dependencies
+        run: |
+          cd Example
+          pod install --repo-update
+        shell: bash
 
       - name: Run unit tests
         run: |

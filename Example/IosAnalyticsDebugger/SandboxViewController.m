@@ -54,7 +54,7 @@
 
 - (IBAction)onSendDelayedClick:(id)sender {
    [NSTimer scheduledTimerWithTimeInterval:5 repeats:NO block:^(NSTimer * _Nonnull timer) {
-      [[AVOAppDelegate debugger] publishEvent:@"Error event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": @[], @"eventProps": @[], @"userProps": @[]}];
+      [[AVOAppDelegate debugger] publishEvent:@"Delayed event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": @[], @"eventProps": @[], @"userProps": @[]}];
    }];
 }
 

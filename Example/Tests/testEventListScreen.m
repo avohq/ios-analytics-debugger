@@ -19,6 +19,7 @@
 
 @interface EventsListScreenViewController(Private)
 - (void) dismissSelf;
+- (IBAction)onClearButtonClick:(id)sender;
 @end
 
 @interface SandboxViewController(Private)
@@ -40,7 +41,7 @@ SpecBegin(AvoEventListScreen)
         __block AnalyticsDebugger *ac;
         
         beforeEach(^{
-            //        Load view controllers/views
+            // Load view controllers/views
             storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             vcontroller = [storyboard instantiateViewControllerWithIdentifier:@"SandboxViewController"];
             [[UIApplication sharedApplication].keyWindow setRootViewController:vcontroller];
@@ -49,7 +50,7 @@ SpecBegin(AvoEventListScreen)
             NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
             NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
             eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
-    //         Remove default 4 events in event list
+            // Remove default 4 events in event list
             ac = [[AnalyticsDebugger alloc] init];
             if([[AnalyticsDebugger events] count] > 0){
                 [AnalyticsDebugger.events removeAllObjects];
@@ -71,8 +72,9 @@ SpecBegin(AvoEventListScreen)
 
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-bubble");
+            } else {
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.02);
             }
-            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bubble", 0.02);
         });
 
         it(@"Renders correctly when opened - bar", ^{
@@ -81,8 +83,9 @@ SpecBegin(AvoEventListScreen)
 
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-bar");
+            } else {
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.02);
             }
-            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-bar", 0.02);
         });
 
         it(@"Toggle opens and closes event list", ^{
@@ -97,8 +100,9 @@ SpecBegin(AvoEventListScreen)
             [eventsListViewController dismissSelf];
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-closed");
+            } else {
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-closed", 0.1);
             }
-            expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-closed", 0.1);
         });
         
         it(@"Test posting event works", ^{
@@ -121,6 +125,38 @@ SpecBegin(AvoEventListScreen)
             }
             else {
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-postevent");
+            }
+        });
+        
+        it(@"Test clear events", ^{
+            [vcontroller shoBarDebugger:self];
+            [ac openEventsListScreen];
+
+            NSMutableArray * props = [NSMutableArray new];
+
+            [props addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"id0 event" withValue:@"value 0"]];
+            [props addObject:[[DebuggerProp alloc] initWithId:@"id1" withName:@"id1 event" withValue:@"value 1"]];
+
+            NSMutableArray * errors = [NSMutableArray new];
+
+            [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"error in event id0"]];
+
+            [ac publishEvent:@"Test IOS Debugger Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+                withProperties:props withErrors:errors];
+            
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+            
+            NSMutableArray * events = [AnalyticsDebugger events];
+            assert(events.count != 0);
+            
+            [eventsListViewController onClearButtonClick:@YES];
+
+            assert([AnalyticsDebugger events].count == 0);
+            if(recordReference == false){
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-cleared", 0.1);
+            }
+            else {
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-cleared");
             }
         });
     });

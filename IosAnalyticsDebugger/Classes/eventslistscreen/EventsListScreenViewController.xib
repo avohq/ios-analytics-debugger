@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,11 +25,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x1X-Iu-XFf">
-                    <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                    <rect key="frame" x="0.0" y="96" width="414" height="766"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6G5-ul-omW" userLabel="Top Bar">
-                    <rect key="frame" x="0.0" y="44" width="414" height="48"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="48"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avo_debugger_close_button" translatesAutoresizingMaskIntoConstraints="NO" id="9s1-MD-aQu">
                             <rect key="frame" x="388" y="19" width="10" height="10"/>
@@ -54,14 +54,36 @@
                             <color key="textColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-OW-CdX">
+                            <rect key="frame" x="298.5" y="12" width="65.5" height="24"/>
+                            <color key="tintColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <backgroundConfiguration key="background" cornerRadius="4" strokeWidth="2" strokeOutset="3">
+                                    <color key="strokeColor" red="0.86699998378753662" green="0.86699998378753662" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </backgroundConfiguration>
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Clear">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Medium"/>
+                                            <font key="NSOriginalFont" size="17" name="ITFDevanagari-Bold"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="onClearButtonClick:" destination="-1" eventType="touchUpInside" id="w6b-AI-HS5"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="IKD-QF-tZ2"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="trailing" secondItem="bR6-ND-dhF" secondAttribute="trailing" constant="16" id="33L-dJ-PO8"/>
                         <constraint firstItem="9s1-MD-aQu" firstAttribute="centerY" secondItem="6G5-ul-omW" secondAttribute="centerY" id="4DD-LC-WFZ"/>
+                        <constraint firstItem="e4A-OW-CdX" firstAttribute="top" secondItem="IKD-QF-tZ2" secondAttribute="top" constant="12" id="CXz-YL-NVS"/>
                         <constraint firstItem="ug0-cr-KSC" firstAttribute="leading" secondItem="6G5-ul-omW" secondAttribute="leading" constant="32" id="HPU-Hz-vaC"/>
                         <constraint firstItem="HRV-Hh-hdL" firstAttribute="leading" secondItem="IKD-QF-tZ2" secondAttribute="leading" id="U8i-LV-p7g"/>
+                        <constraint firstItem="9s1-MD-aQu" firstAttribute="leading" secondItem="e4A-OW-CdX" secondAttribute="trailing" constant="24" id="UY4-Ec-iBX"/>
                         <constraint firstAttribute="trailing" secondItem="9s1-MD-aQu" secondAttribute="trailing" constant="16" id="YNc-cq-PrP"/>
                         <constraint firstAttribute="trailing" secondItem="ug0-cr-KSC" secondAttribute="trailing" constant="32" id="c5g-Sr-kRB"/>
                         <constraint firstItem="bR6-ND-dhF" firstAttribute="centerY" secondItem="IKD-QF-tZ2" secondAttribute="centerY" constant="-1.5" id="e0p-f1-WcT"/>
@@ -69,6 +91,7 @@
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="HRV-Hh-hdL" secondAttribute="bottom" id="llU-Dc-TDF"/>
                         <constraint firstItem="ug0-cr-KSC" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="top" constant="16" id="nb5-t3-n1A"/>
                         <constraint firstAttribute="height" constant="48" id="ny0-0a-Mmn"/>
+                        <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="e4A-OW-CdX" secondAttribute="bottom" constant="12" id="od5-fJ-kq1"/>
                         <constraint firstAttribute="bottom" secondItem="ug0-cr-KSC" secondAttribute="bottom" constant="16" id="tLh-kK-Hzr"/>
                     </constraints>
                 </view>
