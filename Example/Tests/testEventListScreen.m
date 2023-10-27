@@ -41,7 +41,7 @@ SpecBegin(AvoEventListScreen)
         __block AnalyticsDebugger *ac;
         
         beforeEach(^{
-            //        Load view controllers/views
+            // Load view controllers/views
             storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             vcontroller = [storyboard instantiateViewControllerWithIdentifier:@"SandboxViewController"];
             [[UIApplication sharedApplication].keyWindow setRootViewController:vcontroller];
@@ -50,7 +50,7 @@ SpecBegin(AvoEventListScreen)
             NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
             NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
             eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
-    //         Remove default 4 events in event list
+            // Remove default 4 events in event list
             ac = [[AnalyticsDebugger alloc] init];
             if([[AnalyticsDebugger events] count] > 0){
                 [AnalyticsDebugger.events removeAllObjects];

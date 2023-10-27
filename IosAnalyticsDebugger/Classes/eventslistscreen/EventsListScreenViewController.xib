@@ -54,10 +54,15 @@
                             <color key="textColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-OW-CdX">
-                            <rect key="frame" x="300" y="8" width="64" height="32"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Clear"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-OW-CdX">
+                            <rect key="frame" x="297" y="10" width="67" height="28"/>
+                            <color key="tintColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Clear">
+                                <backgroundConfiguration key="background" cornerRadius="4" strokeWidth="2" strokeOutset="3">
+                                    <color key="strokeColor" red="0.86699998378753662" green="0.86699998378753662" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </backgroundConfiguration>
+                                <fontDescription key="titleFontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="onClearButtonClick:" destination="-1" eventType="touchUpInside" id="w6b-AI-HS5"/>
                             </connections>
@@ -68,7 +73,7 @@
                     <constraints>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="trailing" secondItem="bR6-ND-dhF" secondAttribute="trailing" constant="16" id="33L-dJ-PO8"/>
                         <constraint firstItem="9s1-MD-aQu" firstAttribute="centerY" secondItem="6G5-ul-omW" secondAttribute="centerY" id="4DD-LC-WFZ"/>
-                        <constraint firstItem="e4A-OW-CdX" firstAttribute="top" secondItem="IKD-QF-tZ2" secondAttribute="top" constant="8" id="CXz-YL-NVS"/>
+                        <constraint firstItem="e4A-OW-CdX" firstAttribute="top" secondItem="IKD-QF-tZ2" secondAttribute="top" constant="10" id="CXz-YL-NVS"/>
                         <constraint firstItem="ug0-cr-KSC" firstAttribute="leading" secondItem="6G5-ul-omW" secondAttribute="leading" constant="32" id="HPU-Hz-vaC"/>
                         <constraint firstItem="HRV-Hh-hdL" firstAttribute="leading" secondItem="IKD-QF-tZ2" secondAttribute="leading" id="U8i-LV-p7g"/>
                         <constraint firstItem="9s1-MD-aQu" firstAttribute="leading" secondItem="e4A-OW-CdX" secondAttribute="trailing" constant="24" id="UY4-Ec-iBX"/>
@@ -79,7 +84,7 @@
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="HRV-Hh-hdL" secondAttribute="bottom" id="llU-Dc-TDF"/>
                         <constraint firstItem="ug0-cr-KSC" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="top" constant="16" id="nb5-t3-n1A"/>
                         <constraint firstAttribute="height" constant="48" id="ny0-0a-Mmn"/>
-                        <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="e4A-OW-CdX" secondAttribute="bottom" constant="8" id="od5-fJ-kq1"/>
+                        <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="e4A-OW-CdX" secondAttribute="bottom" constant="10" id="od5-fJ-kq1"/>
                         <constraint firstAttribute="bottom" secondItem="ug0-cr-KSC" secondAttribute="bottom" constant="16" id="tLh-kK-Hzr"/>
                     </constraints>
                 </view>
