@@ -21,6 +21,8 @@
 - (void) dismissSelf;
 - (IBAction)onClearButtonClick:(id)sender;
 - (IBAction)onToggleFilter:(id)sender;
+- (void)onIputFilter:(NSString*)newFilter;
+- (NSArray *) filteredEvents;
 @property (strong, nonatomic) IBOutlet UIButton *filterInput;
 @end
 
@@ -166,18 +168,6 @@ SpecBegin(AvoEventListScreen)
         it(@"Test show and hide filter", ^{
             [vcontroller shoBarDebugger:self];
             [ac openEventsListScreen];
-
-            NSMutableArray * props = [NSMutableArray new];
-
-            [props addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"id0 event" withValue:@"value 0"]];
-            [props addObject:[[DebuggerProp alloc] initWithId:@"id1" withName:@"id1 event" withValue:@"value 1"]];
-
-            NSMutableArray * errors = [NSMutableArray new];
-
-            [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"error in event id0"]];
-
-            [ac publishEvent:@"Test IOS Debugger Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
-                withProperties:props withErrors:errors];
             
             [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
 
@@ -188,6 +178,55 @@ SpecBegin(AvoEventListScreen)
             [eventsListViewController onToggleFilter:@YES];
             
             assert([eventsListViewController.filterInput isHidden] == YES);
+        });
+        
+        it(@"Shows subset of events based on filter", ^{
+            [vcontroller shoBarDebugger:self];
+            [ac openEventsListScreen];
+
+            [ac publishEvent:@"sunset" withTimestamp:[NSNumber numberWithDouble:3.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [ac publishEvent:@"midnight" withTimestamp:[NSNumber numberWithDouble:4.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [ac publishEvent:@"sunrise" withTimestamp:[NSNumber numberWithDouble:1.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [ac publishEvent:@"midday" withTimestamp:[NSNumber numberWithDouble:2.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+
+            // 4 items in the debugger
+            assert([eventsListViewController filteredEvents].count == 4);
+
+            [eventsListViewController onToggleFilter:@YES];
+
+            // When filter is set
+            [eventsListViewController onIputFilter:@"mId"];
+
+            // Then the content is filtered
+            assert([eventsListViewController filteredEvents].count == 2);
+            
+            // When filter is hidden
+            [eventsListViewController onToggleFilter:@YES];
+            
+            // 4 items in the debugger
+            NSArray * filtered = [eventsListViewController filteredEvents];
+            assert(filtered.count == 4);
+
+            // When filter is shown back
+            [eventsListViewController onToggleFilter:@YES];
+            
+            // Then the content is filtered
+            assert([eventsListViewController filteredEvents].count == 2);
+            
+            // When filter is reset
+            [eventsListViewController onIputFilter:@""];
+            
+            // 4 items in the debugger
+            assert([eventsListViewController filteredEvents].count == 4);
         });
     });
 

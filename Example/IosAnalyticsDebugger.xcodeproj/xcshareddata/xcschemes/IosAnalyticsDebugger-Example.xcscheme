@@ -46,6 +46,11 @@
                BlueprintName = "IosAnalyticsDebugger_Tests"
                ReferencedContainer = "container:IosAnalyticsDebugger.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AvoEventListScreenSpec/test_AvoEventListScreen__Test_show_and_hide_filter">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

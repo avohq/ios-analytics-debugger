@@ -20,11 +20,32 @@
 
 @property (strong, nonatomic) NSMutableSet *expendedEvents;
 
+- (NSMutableArray *) filteredEvents;
+- (void)onIputFilter:(NSString*)newFilter;
+
 @end
 
 @implementation EventsListScreenViewController
 
 NSLayoutConstraint * shownInputFieldConstraint;
+NSString * filter;
+
+- (void)onIputFilter:(NSString*)newFilter {
+    filter = newFilter;
+}
+
+- (NSArray *) filteredEvents {
+    if (filter == nil || self.filterInput.isHidden || [filter isEqualToString:@""]) {
+        return [AnalyticsDebugger events];
+    } else {
+        NSPredicate *filterPredicate =
+        [NSPredicate predicateWithFormat:
+         [NSString stringWithFormat:@"SELF.name contains[c] '%@'", filter]];
+         NSArray *filteredArray =
+         [[AnalyticsDebugger events] filteredArrayUsingPredicate:filterPredicate];
+        return filteredArray;
+    }
+}
 
 - (IBAction)onClearButtonClick:(id)sender {
     [AnalyticsDebugger.events removeAllObjects];
@@ -106,7 +127,7 @@ NSLayoutConstraint * shownInputFieldConstraint;
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     EventTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"EventTableViewCell" forIndexPath:indexPath];
     cell.eventsListScreenViewController = self;
-    [cell populateWithEvent:[AnalyticsDebugger.events objectAtIndex:indexPath.row]];
+    [cell populateWithEvent:[[self filteredEvents] objectAtIndex:indexPath.row]];
     
     if ([self.expendedEvents containsObject:cell.event]) {
         [cell expend];
@@ -131,7 +152,7 @@ NSLayoutConstraint * shownInputFieldConstraint;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger count = [AnalyticsDebugger.events count];
+    NSInteger count = [[self filteredEvents] count];
     return count;
 }
 
