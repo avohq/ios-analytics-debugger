@@ -69,6 +69,7 @@ NSString * filter;
         [self.filterInput setHidden:YES];
         [self.view removeConstraint:shownInputFieldConstraint];
     }
+    [self.eventsTableView reloadData];
 }
 
 - (void)viewDidLoad {
