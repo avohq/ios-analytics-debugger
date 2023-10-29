@@ -120,6 +120,7 @@ NSString * filter;
 - (void)dealloc {
     [AnalyticsDebugger setOnNewEventCallback:nil];
     shownInputFieldConstraint = nil;
+    filter = nil;
 }
 
 - (void) populateExpended {
