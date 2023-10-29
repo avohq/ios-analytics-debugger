@@ -46,6 +46,8 @@ SpecBegin(AvoEventListScreen)
         
         beforeEach(^{
             // Load view controllers/views
+            ac = [[AnalyticsDebugger alloc] init];
+
             storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             vcontroller = [storyboard instantiateViewControllerWithIdentifier:@"SandboxViewController"];
             [[UIApplication sharedApplication].keyWindow setRootViewController:vcontroller];
@@ -56,7 +58,7 @@ SpecBegin(AvoEventListScreen)
             eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
             [eventsListViewController loadView];
             // Remove default 4 events in event list
-            ac = [[AnalyticsDebugger alloc] init];
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
             if([[AnalyticsDebugger events] count] > 0){
                 [AnalyticsDebugger.events removeAllObjects];
             }
@@ -175,9 +177,27 @@ SpecBegin(AvoEventListScreen)
 
             assert([eventsListViewController.filterInput isHidden] == NO);
             
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+            
+            if(recordReference == false){
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-filter-visible", 0.1);
+            }
+            else {
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-filter-visible");
+            }
+            
             [eventsListViewController onToggleFilter:@YES];
             
             assert([eventsListViewController.filterInput isHidden] == YES);
+            
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+            
+            if(recordReference == false){
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-filter-hidden", 0.1);
+            }
+            else {
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-filter-hidden");
+            }
         });
         
         it(@"Shows subset of events based on filter", ^{
@@ -199,7 +219,8 @@ SpecBegin(AvoEventListScreen)
             [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
 
             // 4 items in the debugger
-            assert([eventsListViewController filteredEvents].count == 4);
+            NSArray * filtered = [eventsListViewController filteredEvents];
+            assert(filtered.count == 4);
 
             [eventsListViewController onToggleFilter:@YES];
 
@@ -213,7 +234,7 @@ SpecBegin(AvoEventListScreen)
             [eventsListViewController onToggleFilter:@YES];
             
             // 4 items in the debugger
-            NSArray * filtered = [eventsListViewController filteredEvents];
+            filtered = [eventsListViewController filteredEvents];
             assert(filtered.count == 4);
 
             // When filter is shown back
@@ -228,7 +249,47 @@ SpecBegin(AvoEventListScreen)
             // 4 items in the debugger
             assert([eventsListViewController filteredEvents].count == 4);
         });
+
+        it(@"onInputFilter shows filtered data", ^{
+            [vcontroller shoBarDebugger:self];
+            [ac openEventsListScreen];
+
+            [ac publishEvent:@"sunset" withTimestamp:[NSNumber numberWithDouble:3.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [ac publishEvent:@"midnight" withTimestamp:[NSNumber numberWithDouble:4.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [ac publishEvent:@"sunrise" withTimestamp:[NSNumber numberWithDouble:1.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [ac publishEvent:@"midday" withTimestamp:[NSNumber numberWithDouble:2.0]
+                withProperties:[NSMutableArray new] withErrors:[NSMutableArray new]];
+            
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+
+            // 4 items in the debugger
+            NSArray * filtered = [eventsListViewController filteredEvents];
+            assert(filtered.count == 4);
+
+            [eventsListViewController onToggleFilter:@YES];
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+
+            // When filter is set
+            [eventsListViewController onIputFilter:@"mId"];
+            
+            // 2 items in the debugger
+            filtered = [eventsListViewController filteredEvents];
+            assert(filtered.count == 2);
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+
+            // Then the content is reloaded and shown
+            if(recordReference == false){
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-filtered", 0.1);
+            }
+            else {
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-filtered");
+            }
+        });
     });
-
-
 SpecEnd

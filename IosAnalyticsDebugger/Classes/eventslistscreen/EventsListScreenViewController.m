@@ -30,8 +30,14 @@
 NSLayoutConstraint * shownInputFieldConstraint;
 NSString * filter;
 
+- (void)onIputFilterTextChanged:(UITextField*)newFilterInput {
+    
+    [self onIputFilter:[newFilterInput text]];
+}
+
 - (void)onIputFilter:(NSString*)newFilter {
     filter = newFilter;
+    [self.eventsTableView reloadData];
 }
 
 - (NSArray *) filteredEvents {
@@ -98,6 +104,10 @@ NSString * filter;
         [self.closeText setText:@"x"];
     }
     [self.avoLogoImage setImage:[UIImage imageNamed:@"avo_logo" inBundle:resBundle compatibleWithTraitCollection:nil]];
+
+    [self.filterInput addTarget:self
+                  action:@selector(onIputFilterTextChanged:)
+        forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -108,6 +118,7 @@ NSString * filter;
 
 - (void)dealloc {
     [AnalyticsDebugger setOnNewEventCallback:nil];
+    shownInputFieldConstraint = nil;
 }
 
 - (void) populateExpended {
