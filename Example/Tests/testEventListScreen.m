@@ -20,6 +20,8 @@
 @interface EventsListScreenViewController(Private)
 - (void) dismissSelf;
 - (IBAction)onClearButtonClick:(id)sender;
+- (IBAction)onToggleFilter:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *filterInput;
 @end
 
 @interface SandboxViewController(Private)
@@ -50,6 +52,7 @@ SpecBegin(AvoEventListScreen)
             NSURL *bundleURL = [[[NSBundle bundleForClass:EventsListScreenViewController.class] resourceURL] URLByAppendingPathComponent:@"IosAnalyticsDebugger.bundle"];
             NSBundle *resBundle = [NSBundle bundleWithURL:bundleURL];
             eventsListViewController = [[EventsListScreenViewController alloc] initWithNibName:@"EventsListScreenViewController" bundle:resBundle];
+            [eventsListViewController loadView];
             // Remove default 4 events in event list
             ac = [[AnalyticsDebugger alloc] init];
             if([[AnalyticsDebugger events] count] > 0){
@@ -96,7 +99,7 @@ SpecBegin(AvoEventListScreen)
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-open");
             }
             expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-open", 0.1);
-            
+
             [eventsListViewController dismissSelf];
             if(recordReference == true){
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-closed");
@@ -104,7 +107,7 @@ SpecBegin(AvoEventListScreen)
                 expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-closed", 0.1);
             }
         });
-        
+
         it(@"Test posting event works", ^{
             [vcontroller shoBarDebugger:self];
             [ac openEventsListScreen];
@@ -127,8 +130,40 @@ SpecBegin(AvoEventListScreen)
                 expect(window).will.recordSnapshotNamed(@"render-eventlist-postevent");
             }
         });
-        
+
         it(@"Test clear events", ^{
+            [vcontroller shoBarDebugger:self];
+            [ac openEventsListScreen];
+
+            NSMutableArray * props = [NSMutableArray new];
+
+            [props addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"id0 event" withValue:@"value 0"]];
+            [props addObject:[[DebuggerProp alloc] initWithId:@"id1" withName:@"id1 event" withValue:@"value 1"]];
+
+            NSMutableArray * errors = [NSMutableArray new];
+
+            [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"error in event id0"]];
+
+            [ac publishEvent:@"Test IOS Debugger Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+                withProperties:props withErrors:errors];
+
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+
+            NSMutableArray * events = [AnalyticsDebugger events];
+            assert(events.count != 0);
+
+            [eventsListViewController onClearButtonClick:@YES];
+
+            assert([AnalyticsDebugger events].count == 0);
+            if(recordReference == false){
+                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-cleared", 0.1);
+            }
+            else {
+                expect(window).will.recordSnapshotNamed(@"render-eventlist-cleared");
+            }
+        });
+        
+        it(@"Test show and hide filter", ^{
             [vcontroller shoBarDebugger:self];
             [ac openEventsListScreen];
 
@@ -145,19 +180,16 @@ SpecBegin(AvoEventListScreen)
                 withProperties:props withErrors:errors];
             
             [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
-            
-            NSMutableArray * events = [AnalyticsDebugger events];
-            assert(events.count != 0);
-            
-            [eventsListViewController onClearButtonClick:@YES];
 
-            assert([AnalyticsDebugger events].count == 0);
-            if(recordReference == false){
-                expect(window).will.haveValidSnapshotNamedWithTolerance(@"render-eventlist-cleared", 0.1);
-            }
-            else {
-                expect(window).will.recordSnapshotNamed(@"render-eventlist-cleared");
-            }
+            [eventsListViewController onToggleFilter:@YES];
+
+            assert([eventsListViewController.filterInput isHidden] == NO);
+            
+            [eventsListViewController onToggleFilter:@YES];
+            
+            assert([eventsListViewController.filterInput isHidden] == YES);
         });
     });
+
+
 SpecEnd

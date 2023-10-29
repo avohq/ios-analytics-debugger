@@ -11,7 +11,7 @@
 #import "Util.h"
 
 @interface EventsListScreenViewController ()
-
+@property (weak, nonatomic) IBOutlet UITextField *filterInput;
 @property (weak, nonatomic) IBOutlet UIView *closeButton;
 @property (weak, nonatomic) IBOutlet UITableView *eventsTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *closeButtonIcon;
@@ -23,9 +23,25 @@
 @end
 
 @implementation EventsListScreenViewController
+
+NSLayoutConstraint * shownInputFieldConstraint;
+
 - (IBAction)onClearButtonClick:(id)sender {
     [AnalyticsDebugger.events removeAllObjects];
     [self.eventsTableView reloadData];
+}
+- (IBAction)onToggleFilter:(id)sender {
+    if (shownInputFieldConstraint == nil) {
+        shownInputFieldConstraint = [NSLayoutConstraint constraintWithItem:self.filterInput attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:34];
+    }
+    
+    if (self.filterInput.isHidden) {
+        [self.filterInput setHidden:NO];
+        [self.view addConstraint:shownInputFieldConstraint];
+    } else {
+        [self.filterInput setHidden:YES];
+        [self.view removeConstraint:shownInputFieldConstraint];
+    }
 }
 
 - (void)viewDidLoad {
