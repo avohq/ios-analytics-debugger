@@ -11,7 +11,7 @@
 #import "Util.h"
 
 @interface EventsListScreenViewController ()
-
+@property (weak, nonatomic) IBOutlet UITextField *filterInput;
 @property (weak, nonatomic) IBOutlet UIView *closeButton;
 @property (weak, nonatomic) IBOutlet UITableView *eventsTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *closeButtonIcon;
@@ -20,11 +20,55 @@
 
 @property (strong, nonatomic) NSMutableSet *expendedEvents;
 
+- (NSMutableArray *) filteredEvents;
+- (void)onIputFilter:(NSString*)newFilter;
+
 @end
 
 @implementation EventsListScreenViewController
+
+NSLayoutConstraint * shownInputFieldConstraint;
+NSString * filter;
+
+- (void)onIputFilterTextChanged:(UITextField*)newFilterInput {
+    
+    [self onIputFilter:[newFilterInput text]];
+}
+
+- (void)onIputFilter:(NSString*)newFilter {
+    filter = newFilter;
+    [self.eventsTableView reloadData];
+}
+
+- (NSArray *) filteredEvents {
+    if (filter == nil || self.filterInput.isHidden || [filter isEqualToString:@""]) {
+        return [AnalyticsDebugger events];
+    } else {
+        NSPredicate *filterPredicate =
+        [NSPredicate predicateWithFormat:
+         [NSString stringWithFormat:@"SELF.name contains[c] '%@'", filter]];
+         NSArray *filteredArray =
+         [[AnalyticsDebugger events] filteredArrayUsingPredicate:filterPredicate];
+        return filteredArray;
+    }
+}
+
 - (IBAction)onClearButtonClick:(id)sender {
     [AnalyticsDebugger.events removeAllObjects];
+    [self.eventsTableView reloadData];
+}
+- (IBAction)onToggleFilter:(id)sender {
+    if (shownInputFieldConstraint == nil) {
+        shownInputFieldConstraint = [NSLayoutConstraint constraintWithItem:self.filterInput attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:34];
+    }
+    
+    if (self.filterInput.isHidden) {
+        [self.filterInput setHidden:NO];
+        [self.view addConstraint:shownInputFieldConstraint];
+    } else {
+        [self.filterInput setHidden:YES];
+        [self.view removeConstraint:shownInputFieldConstraint];
+    }
     [self.eventsTableView reloadData];
 }
 
@@ -61,6 +105,10 @@
         [self.closeText setText:@"x"];
     }
     [self.avoLogoImage setImage:[UIImage imageNamed:@"avo_logo" inBundle:resBundle compatibleWithTraitCollection:nil]];
+
+    [self.filterInput addTarget:self
+                  action:@selector(onIputFilterTextChanged:)
+        forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -71,6 +119,8 @@
 
 - (void)dealloc {
     [AnalyticsDebugger setOnNewEventCallback:nil];
+    shownInputFieldConstraint = nil;
+    filter = nil;
 }
 
 - (void) populateExpended {
@@ -90,7 +140,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     EventTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"EventTableViewCell" forIndexPath:indexPath];
     cell.eventsListScreenViewController = self;
-    [cell populateWithEvent:[AnalyticsDebugger.events objectAtIndex:indexPath.row]];
+    [cell populateWithEvent:[[self filteredEvents] objectAtIndex:indexPath.row]];
     
     if ([self.expendedEvents containsObject:cell.event]) {
         [cell expend];
@@ -115,7 +165,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger count = [AnalyticsDebugger.events count];
+    NSInteger count = [[self filteredEvents] count];
     return count;
 }
 

@@ -12,10 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventsListScreenViewController">
             <connections>
                 <outlet property="avoLogoImage" destination="ug0-cr-KSC" id="Wqu-1f-mZG"/>
-                <outlet property="closeButton" destination="6G5-ul-omW" id="Ciy-F9-9cz"/>
+                <outlet property="closeButton" destination="Ghw-uO-Ga3" id="0sl-BF-GWf"/>
                 <outlet property="closeButtonIcon" destination="9s1-MD-aQu" id="HkH-Xi-TTd"/>
                 <outlet property="closeText" destination="bR6-ND-dhF" id="U7S-Nc-OEx"/>
                 <outlet property="eventsTableView" destination="x1X-Iu-XFf" id="AZo-cy-n9y"/>
+                <outlet property="filterInput" destination="gdU-TR-zCb" id="kMF-On-Y3l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,10 +25,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x1X-Iu-XFf">
-                    <rect key="frame" x="0.0" y="96" width="414" height="766"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6G5-ul-omW" userLabel="Top Bar">
                     <rect key="frame" x="0.0" y="48" width="414" height="48"/>
                     <subviews>
@@ -54,6 +51,9 @@
                             <color key="textColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ghw-uO-Ga3" userLabel="Close button area">
+                            <rect key="frame" x="372" y="0.0" width="42" height="48"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4A-OW-CdX">
                             <rect key="frame" x="298.5" y="12" width="65.5" height="24"/>
                             <color key="tintColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,37 +74,80 @@
                                 <action selector="onClearButtonClick:" destination="-1" eventType="touchUpInside" id="w6b-AI-HS5"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dV0-dr-wah">
+                            <rect key="frame" x="16" y="12" width="63.5" height="24"/>
+                            <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <backgroundConfiguration key="background" cornerRadius="4" strokeWidth="2" strokeOutset="3">
+                                    <color key="strokeColor" red="0.86699998379999998" green="0.86699998379999998" blue="0.86699998379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </backgroundConfiguration>
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Filter">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Medium"/>
+                                            <font key="NSOriginalFont" size="17" name="ITFDevanagari-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="onToggleFilter:" destination="-1" eventType="touchUpInside" id="GXG-uM-2xk"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="IKD-QF-tZ2"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="Ghw-uO-Ga3" secondAttribute="bottom" id="0Cd-P6-KA2"/>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="trailing" secondItem="bR6-ND-dhF" secondAttribute="trailing" constant="16" id="33L-dJ-PO8"/>
                         <constraint firstItem="9s1-MD-aQu" firstAttribute="centerY" secondItem="6G5-ul-omW" secondAttribute="centerY" id="4DD-LC-WFZ"/>
                         <constraint firstItem="e4A-OW-CdX" firstAttribute="top" secondItem="IKD-QF-tZ2" secondAttribute="top" constant="12" id="CXz-YL-NVS"/>
                         <constraint firstItem="ug0-cr-KSC" firstAttribute="leading" secondItem="6G5-ul-omW" secondAttribute="leading" constant="32" id="HPU-Hz-vaC"/>
                         <constraint firstItem="HRV-Hh-hdL" firstAttribute="leading" secondItem="IKD-QF-tZ2" secondAttribute="leading" id="U8i-LV-p7g"/>
                         <constraint firstItem="9s1-MD-aQu" firstAttribute="leading" secondItem="e4A-OW-CdX" secondAttribute="trailing" constant="24" id="UY4-Ec-iBX"/>
+                        <constraint firstItem="Ghw-uO-Ga3" firstAttribute="leading" secondItem="e4A-OW-CdX" secondAttribute="trailing" constant="8" symbolic="YES" id="X3W-ZB-hZM"/>
                         <constraint firstAttribute="trailing" secondItem="9s1-MD-aQu" secondAttribute="trailing" constant="16" id="YNc-cq-PrP"/>
                         <constraint firstAttribute="trailing" secondItem="ug0-cr-KSC" secondAttribute="trailing" constant="32" id="c5g-Sr-kRB"/>
                         <constraint firstItem="bR6-ND-dhF" firstAttribute="centerY" secondItem="IKD-QF-tZ2" secondAttribute="centerY" constant="-1.5" id="e0p-f1-WcT"/>
+                        <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="dV0-dr-wah" secondAttribute="bottom" constant="12" id="eUd-Am-hTt"/>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="trailing" secondItem="HRV-Hh-hdL" secondAttribute="trailing" id="hnV-7T-TwO"/>
+                        <constraint firstItem="dV0-dr-wah" firstAttribute="top" secondItem="IKD-QF-tZ2" secondAttribute="top" constant="12" id="jiq-rU-Vea"/>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="HRV-Hh-hdL" secondAttribute="bottom" id="llU-Dc-TDF"/>
                         <constraint firstItem="ug0-cr-KSC" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="top" constant="16" id="nb5-t3-n1A"/>
                         <constraint firstAttribute="height" constant="48" id="ny0-0a-Mmn"/>
                         <constraint firstItem="IKD-QF-tZ2" firstAttribute="bottom" secondItem="e4A-OW-CdX" secondAttribute="bottom" constant="12" id="od5-fJ-kq1"/>
                         <constraint firstAttribute="bottom" secondItem="ug0-cr-KSC" secondAttribute="bottom" constant="16" id="tLh-kK-Hzr"/>
+                        <constraint firstItem="dV0-dr-wah" firstAttribute="leading" secondItem="IKD-QF-tZ2" secondAttribute="leading" constant="16" id="uRa-eP-jsB"/>
                     </constraints>
                 </view>
+                <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Filter by event name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gdU-TR-zCb">
+                    <rect key="frame" x="16" y="96" width="382" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="nsh-dz-iE3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x1X-Iu-XFf">
+                    <rect key="frame" x="0.0" y="96" width="414" height="766"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="x1X-Iu-XFf" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="bottom" id="7aC-MZ-wGE"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="Ghw-uO-Ga3" secondAttribute="top" id="6Fp-SB-XyC"/>
                 <constraint firstItem="6G5-ul-omW" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="L4I-t2-5mM"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="6G5-ul-omW" secondAttribute="trailing" id="Lbh-OU-Ykz"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="x1X-Iu-XFf" secondAttribute="trailing" id="Ppe-yL-jNP"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="top" id="XGA-wB-Lu6"/>
+                <constraint firstItem="gdU-TR-zCb" firstAttribute="top" secondItem="6G5-ul-omW" secondAttribute="bottom" id="YsV-KD-lBt"/>
+                <constraint firstItem="gdU-TR-zCb" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="bae-du-foW"/>
+                <constraint firstItem="x1X-Iu-XFf" firstAttribute="top" secondItem="gdU-TR-zCb" secondAttribute="bottom" id="bc2-fB-1xf"/>
                 <constraint firstItem="x1X-Iu-XFf" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="mvX-ie-Ful"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Ghw-uO-Ga3" secondAttribute="trailing" id="rsl-4w-Vst"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="gdU-TR-zCb" secondAttribute="trailing" constant="16" id="uG3-bs-z3a"/>
                 <constraint firstItem="x1X-Iu-XFf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ykO-VT-Jc1"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="148.66071428571428"/>
@@ -118,9 +161,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
