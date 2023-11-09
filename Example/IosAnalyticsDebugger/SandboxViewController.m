@@ -47,7 +47,7 @@
                                              @{@"id" : @"id321343", @"name": @"A Event Name", @"value": @"Commentedverylongdescriptionofvalueofthisparticulareventthatdoesnotfit single line and expends to multiple lines because of its containing number of characters"}];
     
     NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"A User Name User Name User Name User Name User Name User Name", @"value": @"Vasily"},
-                                            @{@"id" : @"id2rert", @"name": @"X User Id", @"value": @"0"}];
+                                            @{@"id" : @"id2rert", @"name": @"B User Id", @"value": @"0"}];
     
     [[AVOAppDelegate debugger] publishEvent:@"Correct event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": @[], @"eventProps": eventProps, @"userProps": userProps}];
 }
