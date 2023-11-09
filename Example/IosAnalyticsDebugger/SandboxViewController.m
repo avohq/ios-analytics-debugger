@@ -43,11 +43,11 @@
 }
 
 - (IBAction)onSendEventClick:(id)sender {
-    NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"Event Id", @"value": @"{ some: thing, \n other : thing }"},
-                                             @{@"id" : @"id321343", @"name": @"Event Name", @"value": @"Commentedverylongdescriptionofvalueofthisparticulareventthatdoesnotfit single line and expends to multiple lines because of its containing number of characters"}];
+    NSArray<NSDictionary *> * eventProps = @[@{@"id" : @"id23gfds3", @"name": @"X Event Id", @"value": @"{ some: thing, \n other : thing }"},
+                                             @{@"id" : @"id321343", @"name": @"A Event Name", @"value": @"Commentedverylongdescriptionofvalueofthisparticulareventthatdoesnotfit single line and expends to multiple lines because of its containing number of characters"}];
     
-    NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"User Name User Name User Name User Name User Name User Name", @"value": @"Vasily"},
-                                            @{@"id" : @"id2rert", @"name": @"User Id", @"value": @"0"}];
+    NSArray<NSDictionary *> * userProps = @[@{@"id" : @"id235523", @"name": @"A User Name User Name User Name User Name User Name User Name", @"value": @"Vasily"},
+                                            @{@"id" : @"id2rert", @"name": @"X User Id", @"value": @"0"}];
     
     [[AVOAppDelegate debugger] publishEvent:@"Correct event" withParams:@{@"timestamp" : [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]], @"id": @"weew342", @"messages": @[], @"eventProps": eventProps, @"userProps": userProps}];
 }

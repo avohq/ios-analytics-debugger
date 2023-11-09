@@ -171,7 +171,7 @@ NSString *currentSchemaId;
     });
 }
 
-- (void) publishEvent:(NSString *) eventName withTimestamp:(NSNumber *) timestamp withProperties:(NSArray<DebuggerProp *> *) props withErrors:(NSArray<DebuggerPropError *> *) errors {
+- (void) publishEvent:(NSString *) eventName withTimestamp:(NSNumber *) timestamp withEventProperties:(NSArray<DebuggerProp *> *) props withUserProperties:(NSArray<DebuggerProp *> *) userProps withErrors:(NSArray<DebuggerPropError *> *) errors {
     
     DebuggerEventItem * event = [DebuggerEventItem new];
     
@@ -191,8 +191,18 @@ NSString *currentSchemaId;
             [event.eventProps addObject:prop];
         }
     }
+    event.userProps = [NSMutableArray new];
+    for (id userProp in userProps) {
+        if (userProp != nil) {
+            [event.userProps addObject:userProp];
+        }
+    }
     
     [self sendEventToAnalyticsDebugger:event];
+}
+
+- (void) publishEvent:(NSString *) eventName withTimestamp:(NSNumber *) timestamp withProperties:(NSArray<DebuggerProp *> *) props withErrors:(NSArray<DebuggerPropError *> *) errors {
+    [self publishEvent:eventName withTimestamp:timestamp withEventProperties: props withUserProperties: [NSMutableArray new] withErrors: errors];
 }
 
 - (void) publishEvent:(NSString *) eventName withParams:(NSDictionary *) params {
@@ -235,6 +245,15 @@ NSString *currentSchemaId;
     [self sendEventToAnalyticsDebugger:event];
 }
 
+- (NSMutableArray * _Nonnull)sortPropsAlphabetically:(NSMutableArray *) props {
+    return [NSMutableArray arrayWithArray: [
+        props
+        sortedArrayUsingComparator:^NSComparisonResult(DebuggerEventItem *a, DebuggerEventItem *b) {
+            return a.name < b.name;
+        }]
+    ];
+}
+
 -(void) sendEventToAnalyticsDebugger:(DebuggerEventItem *) event {
     dispatch_async(dispatch_get_main_queue(), ^(void){
         NSInteger insertIndex = 0;
@@ -247,6 +266,10 @@ NSString *currentSchemaId;
                 break;
             }
         }
+
+        event.eventProps = [self sortPropsAlphabetically:event.eventProps];
+        event.userProps = [self sortPropsAlphabetically:event.userProps];
+
         [analyticsDebuggerEvents insertObject:event atIndex:insertIndex];
         
         if (debuggerView != nil) {

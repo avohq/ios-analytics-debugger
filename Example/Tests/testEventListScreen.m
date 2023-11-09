@@ -135,6 +135,45 @@ SpecBegin(AvoEventListScreen)
             }
         });
 
+        it(@"Test properties are sorted", ^{
+            [vcontroller shoBarDebugger:self];
+            [ac openEventsListScreen];
+
+            NSMutableArray * eventProps = [NSMutableArray new];
+
+            [eventProps addObject:[[DebuggerProp alloc] initWithId:@"id1" withName:@"B prop" withValue:@"value 0"]];
+            [eventProps addObject:[[DebuggerProp alloc] initWithId:@"id0" withName:@"A prop" withValue:@"value 1"]];
+
+            NSMutableArray * userProps = [NSMutableArray new];
+
+            [userProps addObject:[[DebuggerProp alloc] initWithId:@"id3" withName:@"B user prop" withValue:@"value 2"]];
+            [userProps addObject:[[DebuggerProp alloc] initWithId:@"id2" withName:@"A user prop" withValue:@"value 3"]];
+
+            NSMutableArray * errors = [NSMutableArray new];
+
+            [errors addObject:[[DebuggerPropError alloc] initWithPropertyId:@"id0" withMessage:@"error in event id0"]];
+
+            [ac publishEvent:@"Test IOS Debugger Event" withTimestamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] withEventProperties:eventProps withUserProperties:userProps withErrors:errors];
+
+            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+
+            NSMutableArray *events = AnalyticsDebugger.events;
+
+            DebuggerEventItem *event = events[0];
+
+            NSString * firstEventPropName = event.eventProps[0].name;
+            NSString * secondEventPropName = event.eventProps[1].name;
+
+            XCTAssertEqual(firstEventPropName, @"A prop");
+            XCTAssertEqual(secondEventPropName, @"B prop");
+
+            NSString * firstUserPropName = event.userProps[0].name;
+            NSString * secondUserPropName = event.userProps[1].name;
+
+            XCTAssertEqual(firstUserPropName, @"A user prop");
+            XCTAssertEqual(secondUserPropName, @"B user prop");
+        });
+
         it(@"Test clear events", ^{
             [vcontroller shoBarDebugger:self];
             [ac openEventsListScreen];
