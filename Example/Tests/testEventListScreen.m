@@ -146,8 +146,8 @@ SpecBegin(AvoEventListScreen)
 
             NSMutableArray * userProps = [NSMutableArray new];
 
-            [userProps addObject:[[DebuggerProp alloc] initWithId:@"id3" withName:@"B user prop" withValue:@"value 2"]];
-            [userProps addObject:[[DebuggerProp alloc] initWithId:@"id2" withName:@"A user prop" withValue:@"value 3"]];
+            [userProps addObject:[[DebuggerProp alloc] initWithId:@"id2" withName:@"A User prop" withValue:@"value 3"]];
+            [userProps addObject:[[DebuggerProp alloc] initWithId:@"id3" withName:@"B User prop" withValue:@"value 2"]];
 
             NSMutableArray * errors = [NSMutableArray new];
 
@@ -159,7 +159,14 @@ SpecBegin(AvoEventListScreen)
 
             NSMutableArray *events = AnalyticsDebugger.events;
 
-            DebuggerEventItem *event = events[0];
+            DebuggerEventItem *event;
+
+            for (DebuggerEventItem *eventProp in events) {
+                if ([eventProp.name isEqualToString:@"Test IOS Debugger Event"]) {
+                    event = eventProp;
+                    break;
+                }
+            }
 
             NSString * firstEventPropName = event.eventProps[0].name;
             NSString * secondEventPropName = event.eventProps[1].name;
@@ -170,8 +177,8 @@ SpecBegin(AvoEventListScreen)
             NSString * firstUserPropName = event.userProps[0].name;
             NSString * secondUserPropName = event.userProps[1].name;
 
-            XCTAssertEqual(firstUserPropName, @"A user prop");
-            XCTAssertEqual(secondUserPropName, @"B user prop");
+            XCTAssertEqual(firstUserPropName, @"A User prop");
+            XCTAssertEqual(secondUserPropName, @"B User prop");
         });
 
         it(@"Test clear events", ^{

@@ -249,7 +249,7 @@ NSString *currentSchemaId;
     return [NSMutableArray arrayWithArray: [
         props
         sortedArrayUsingComparator:^NSComparisonResult(DebuggerEventItem *a, DebuggerEventItem *b) {
-            return a.name < b.name;
+            return [a.name compare:b.name options:NSCaseInsensitiveSearch];
         }]
     ];
 }
